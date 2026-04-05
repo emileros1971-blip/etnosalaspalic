@@ -993,7 +993,7 @@
 <section class="gallery-section" id="gallery">
   <p class="section-label">Mesto</p>
   <h2 class="section-title">Prizori <em>Salaškog Života</em></h2>
-  <p class="section-body">Učitajte svojih 15 fotografija ispod — one će popuniti ovu galeriju i uvodni deo stranice, oživljavajući salaš za sve posetioce.</p>
+
 
   <div class="photo-grid" id="photoGrid">
     <div class="photo-cell">
@@ -1038,7 +1038,7 @@
   </div>
 
   <label class="upload-hint">
-    <span>📁</span> Učitajte Svih 15 Fotografija Odjednom
+
     <input type="file" multiple accept="image/*" onchange="loadAllPhotos(event)">
   </label>
 </section>
@@ -1283,7 +1283,7 @@
           <div class="contact-icon">✉️</div>
           <div>
             <span class="contact-label">Imejl</span>
-            <span class="contact-value"><a href="/cdn-cgi/l/email-protection#dab1b5a9aabbb69ab7aea9f4a8a9"><span class="__cf_email__" data-cfemail="375c584447565b775a4344194544">[email&#160;protected]</span></a></span>
+            <span class="contact-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c0abafb3b0a1ac80adb4b3eeb2b3">[email&#160;protected]</a></span>
           </div>
         </li>
         <li class="contact-item">
@@ -1317,7 +1317,7 @@
 <!-- FOOTER -->
 <footer>
   <p class="footer-logo">ETNO SALAŠ · PALIĆ</p>
-  <p class="footer-copy">Salaši 330, Palić · +381 63 505 727 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="117a7e6261707d517c65623f6362">[email&#160;protected]</a></p>
+  <p class="footer-copy">Salaši 330, Palić · +381 63 505 727 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="91fafee2e1f0fdd1fce5e2bfe3e2">[email&#160;protected]</a></p>
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
@@ -1391,15 +1391,4 @@ const SITE_PHOTOS = [
     if (i < 5) {
       var slots = document.querySelectorAll('.hero-photo-slot');
       if (slots[i]) {
-        slots[i].innerHTML = '<img src="' + src + '" alt="Etno Salaš Palić" style="width:100%;height:100%;object-fit:cover;display:block;">';
-      }
-    }
-  });
-})();
-
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.opacity = '1';
-        e.target.style.trans
+        slots[i].innerHTML = '<i

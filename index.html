@@ -3,23 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Etno Salaš Palić — Autentično Vojvođansko Domaćinstvo</title>
+<title>Etno Salaš Palić — Privatne Proslave i Odmor</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Crimson+Pro:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --wheat: #e8c97a;
-    --amber: #c4873a;
-    --rust: #8b3e1a;
-    --dark: #1a1208;
-    --forest: #2d4a2a;
-    --cream: #f5edd8;
+    --wheat:     #e8c97a;
+    --amber:     #c4873a;
+    --rust:      #9b4520;
+    --red:       #c0392b;
+    --red-light: #e05540;
+    --dark:      #1a1208;
+    --dark2:     #231508;
+    --forest:    #3d5c39;
+    --cream:     #f5edd8;
     --parchment: #ede0c4;
-    --smoke: #7a6e5f;
-    --white: #fdfaf4;
-    --party-red: #c0392b;
-    --party-gold: #f1c40f;
-    --party-dark: #0d0d0d;
+    --ivory:     #faf4e8;
+    --smoke:     #7a6e5f;
+    --white:     #fdfaf4;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,1157 +28,500 @@
 
   body {
     font-family: 'Crimson Pro', Georgia, serif;
-    background: var(--white);
+    background: var(--dark);
     color: var(--dark);
     overflow-x: hidden;
   }
 
   body::before {
     content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 999;
-    opacity: 0.03;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  /* ── NAV ── */
+  /* NAV */
   nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 20px 48px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(to bottom, rgba(26,18,8,0.85) 0%, transparent 100%);
-    backdrop-filter: blur(2px);
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    padding: 18px 52px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: linear-gradient(to bottom, rgba(13,8,2,0.9) 0%, transparent 100%);
+    backdrop-filter: blur(4px);
   }
-
   .nav-logo {
     font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    color: var(--wheat);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-decoration: none;
+    font-size: 1.1rem; color: var(--wheat);
+    letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none;
   }
-
-  .nav-links { display: flex; gap: 36px; list-style: none; flex-wrap: wrap; }
+  .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
   .nav-links a {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 0.95rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(245, 237, 216, 0.8);
-    text-decoration: none;
-    transition: color 0.3s;
+    font-size: 0.9rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(245,237,216,0.75); text-decoration: none; transition: color 0.3s;
   }
   .nav-links a:hover { color: var(--wheat); }
-  .nav-links a.party-link {
-    color: var(--party-gold);
-    border: 1px solid rgba(241,196,15,0.35);
-    padding: 4px 14px;
-    letter-spacing: 0.12em;
-    transition: background 0.3s, color 0.3s;
+  .nav-links a.hl {
+    color: var(--wheat); border: 1px solid rgba(232,201,122,0.35);
+    padding: 5px 16px; transition: background 0.3s;
   }
-  .nav-links a.party-link:hover { background: rgba(241,196,15,0.12); color: #fff; }
+  .nav-links a.hl:hover { background: rgba(232,201,122,0.1); }
 
-  /* ── HERO ── */
-  .hero {
+  /* ══ PARTY HERO ══ */
+  .party-hero {
     min-height: 100vh;
     position: relative;
-    display: flex;
-    align-items: flex-end;
+    display: flex; align-items: center;
     overflow: hidden;
-    background: var(--dark);
+    background: #1a0e06;
   }
 
-  .hero-bg {
-    position: absolute;
-    inset: 0;
+  .ph-bg {
+    position: absolute; inset: 0; z-index: 0;
     background:
-      linear-gradient(160deg, rgba(26,18,8,0.3) 0%, rgba(139,62,26,0.15) 40%, rgba(26,18,8,0.6) 100%),
-      linear-gradient(to bottom, transparent 40%, rgba(26,18,8,0.95) 100%);
-    z-index: 1;
+      radial-gradient(ellipse 85% 70% at 68% 50%, rgba(192,57,43,0.24) 0%, transparent 65%),
+      radial-gradient(ellipse 55% 80% at 12% 30%, rgba(196,135,58,0.13) 0%, transparent 60%),
+      radial-gradient(ellipse 35% 35% at 88% 82%, rgba(232,201,122,0.07) 0%, transparent 50%),
+      repeating-linear-gradient(78deg, transparent 0px, transparent 38px, rgba(232,201,122,0.022) 38px, rgba(232,201,122,0.022) 39px),
+      repeating-linear-gradient(168deg, transparent 0px, transparent 54px, rgba(192,57,43,0.013) 54px, rgba(192,57,43,0.013) 55px);
   }
 
-  .hero-pattern {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    background-color: #2a1f0e;
-    background-image:
-      radial-gradient(ellipse 80% 50% at 60% 40%, rgba(196,135,58,0.18) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 60% at 20% 70%, rgba(45,74,42,0.3) 0%, transparent 60%),
-      repeating-linear-gradient(85deg, transparent 0px, transparent 18px, rgba(232,201,122,0.04) 18px, rgba(232,201,122,0.04) 19px),
-      repeating-linear-gradient(175deg, transparent 0px, transparent 28px, rgba(232,201,122,0.03) 28px, rgba(232,201,122,0.03) 29px);
+  .ph-wm {
+    position: absolute; right: -80px; bottom: -90px;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(14rem, 30vw, 28rem);
+    font-weight: 700; font-style: italic;
+    color: rgba(232,201,122,0.04);
+    line-height: 1; pointer-events: none; z-index: 1;
+    user-select: none; white-space: nowrap;
   }
 
-  .hero-photos {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
+  .ph-photos {
+    position: absolute; inset: 0; z-index: 0;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1.2fr 0.9fr 0.9fr;
     grid-template-rows: 1fr 1fr;
-    gap: 3px;
+    gap: 4px;
   }
+  .php { overflow: hidden; background: #1a1005; }
+  .php img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.5; transition: transform 10s ease; }
+  .php:hover img { transform: scale(1.04); }
+  .php:nth-child(1) { grid-row: 1 / 3; }
 
-  .hero-photo-slot { overflow: hidden; position: relative; }
-  .hero-photo-slot img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 8s ease; }
-  .hero-photo-slot img:hover { transform: scale(1.05); }
-  .hero-photo-slot:nth-child(1) { grid-column: 1 / 2; grid-row: 1 / 3; background: #1e1508; }
-  .hero-photo-slot:nth-child(2) { background: #24180a; }
-  .hero-photo-slot:nth-child(3) { background: #1a1208; }
-  .hero-photo-slot:nth-child(4) { background: #2a1e0d; }
-  .hero-photo-slot:nth-child(5) { background: #1e1508; }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    padding: 0 80px 80px;
-    max-width: 800px;
-    animation: fadeUp 1.4s ease both;
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-eyebrow {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.85rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--wheat);
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .hero-eyebrow::before { content: ''; width: 40px; height: 1px; background: var(--wheat); opacity: 0.6; }
-
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 7vw, 6rem);
-    font-weight: 700;
-    color: var(--cream);
-    line-height: 1.05;
-    margin-bottom: 24px;
-  }
-
-  .hero-title em { font-style: italic; color: var(--wheat); }
-
-  .hero-subtitle {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem;
-    font-weight: 300;
-    color: rgba(245,237,216,0.7);
-    max-width: 480px;
-    line-height: 1.7;
-    margin-bottom: 48px;
-  }
-
-  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
-
-  .hero-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background: var(--amber);
-    color: var(--dark);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 16px 36px;
-    transition: background 0.3s, gap 0.3s;
-  }
-
-  .hero-cta:hover { background: var(--wheat); gap: 20px; }
-
-  .hero-cta.party {
-    background: transparent;
-    border: 1px solid rgba(241,196,15,0.5);
-    color: var(--party-gold);
-  }
-
-  .hero-cta.party:hover { background: rgba(241,196,15,0.1); color: #fff; border-color: var(--party-gold); }
-
-  .hero-scroll {
-    position: absolute;
-    bottom: 40px;
-    right: 60px;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    color: rgba(232,201,122,0.5);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    writing-mode: vertical-rl;
-    animation: fadeUp 2s ease 0.5s both;
-  }
-
-  .hero-scroll::after {
-    content: '';
-    width: 1px;
-    height: 60px;
-    background: linear-gradient(to bottom, rgba(232,201,122,0.4), transparent);
-    animation: scrollPulse 2s ease infinite;
-  }
-
-  @keyframes scrollPulse {
-    0%, 100% { opacity: 0.4; transform: scaleY(1); }
-    50% { opacity: 1; transform: scaleY(1.2); }
-  }
-
-  /* ── SPLIT MODE TEASER ── */
-  .mode-split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 220px;
-  }
-
-  .mode-card {
-    padding: 56px 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    text-decoration: none;
-    transition: filter 0.4s;
-  }
-
-  .mode-card:hover { filter: brightness(1.08); }
-
-  .mode-card.relax {
-    background: var(--cream);
-    border-right: 2px solid var(--parchment);
-  }
-
-  .mode-card.party {
-    background: var(--party-dark);
-  }
-
-  .mode-card.party::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 80% 100% at 50% 110%, rgba(192,57,43,0.18) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .mode-tag {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-
-  .mode-card.relax .mode-tag { color: var(--amber); }
-  .mode-card.party .mode-tag { color: var(--party-gold); }
-
-  .mode-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
-    line-height: 1.1;
-    margin-bottom: 16px;
-  }
-
-  .mode-card.relax .mode-title { color: var(--dark); }
-  .mode-card.party .mode-title { color: #fff; }
-  .mode-card.party .mode-title em { font-style: italic; color: var(--party-gold); }
-
-  .mode-body {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    line-height: 1.6;
-  }
-
-  .mode-card.relax .mode-body { color: var(--smoke); }
-  .mode-card.party .mode-body { color: rgba(255,255,255,0.55); }
-
-  .mode-arrow {
-    margin-top: 24px;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.85rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-  }
-
-  .mode-card.relax .mode-arrow { color: var(--amber); }
-  .mode-card.party .mode-arrow { color: var(--party-gold); }
-
-  /* ── GALLERY ── */
-  .gallery-section {
-    background: var(--dark);
-    padding: 100px 60px;
-    text-align: center;
-  }
-
-  .section-label {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.8rem;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: var(--amber);
-    margin-bottom: 16px;
-  }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    color: var(--cream);
-    margin-bottom: 16px;
-  }
-
-  .section-title em { font-style: italic; color: var(--wheat); }
-
-  .section-body {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
-    font-weight: 300;
-    color: var(--smoke);
-    max-width: 560px;
-    margin: 0 auto 60px;
-    line-height: 1.7;
-  }
-
-  .photo-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 6px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .photo-cell {
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: 1;
-    background: rgba(255,255,255,0.04);
-    border: 1px dashed rgba(232,201,122,0.15);
-    cursor: pointer;
-    transition: border-color 0.3s;
-  }
-
-  .photo-cell:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 3; aspect-ratio: unset; min-height: 340px; }
-  .photo-cell:nth-child(7) { grid-column: 4 / 6; grid-row: 2 / 4; aspect-ratio: unset; min-height: 260px; }
-  .photo-cell:hover { border-color: rgba(232,201,122,0.4); }
-  .photo-cell img { width: 100%; height: 100%; object-fit: cover; display: none; }
-  .photo-cell.has-image img { display: block; }
-  .photo-cell.has-image .cell-placeholder { display: none; }
-
-  .cell-placeholder {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    color: rgba(232,201,122,0.2);
-  }
-
-  .cell-placeholder span { font-size: 1.5rem; }
-  .cell-placeholder p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-  }
-
-  .upload-hint {
-    margin-top: 40px;
-    padding: 24px 40px;
-    border: 1px solid rgba(232,201,122,0.2);
-    display: inline-flex;
-    align-items: center;
-    gap: 16px;
-    color: rgba(232,201,122,0.6);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    transition: all 0.3s;
-    position: relative;
-  }
-
-  .upload-hint:hover { border-color: var(--amber); color: var(--wheat); background: rgba(196,135,58,0.08); }
-  .upload-hint input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
-
-  /* ── AMENITIES ── */
-  .amenities {
-    background: var(--cream);
-    padding: 120px 60px;
-  }
-
-  .amenities-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: start;
-  }
-
-  .amenities-text .section-label { color: var(--rust); }
-  .amenities-text .section-title { color: var(--dark); margin-bottom: 24px; }
-  .amenities-text .section-title em { color: var(--rust); }
-
-  .amenities-desc { font-size: 1.1rem; line-height: 1.9; color: var(--smoke); margin-bottom: 40px; }
-
-  .rating-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 16px;
-    background: var(--dark);
-    color: var(--cream);
-    padding: 16px 28px;
-  }
-
-  .rating-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--wheat); line-height: 1; }
-
-  .rating-text { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; letter-spacing: 0.1em; line-height: 1.4; }
-  .rating-text strong { display: block; color: var(--wheat); font-size: 1rem; }
-
-  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
-
-  .feature-card {
-    background: var(--parchment);
-    padding: 32px 28px;
-    border-left: 3px solid transparent;
-    transition: border-color 0.3s, background 0.3s;
-  }
-
-  .feature-card:hover { border-left-color: var(--amber); background: white; }
-  .feature-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
-  .feature-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--dark); margin-bottom: 6px; }
-  .feature-desc { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; color: var(--smoke); line-height: 1.6; }
-
-  /* ── ROOMS ── */
-  .rooms { background: var(--dark); padding: 120px 60px; }
-
-  .rooms-header {
-    max-width: 1200px;
-    margin: 0 auto 70px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 40px;
-  }
-
-  .rooms-header .section-title { color: var(--cream); margin-bottom: 0; }
-  .rooms-header .section-label { color: var(--amber); }
-
-  .rooms-desc { max-width: 340px; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--smoke); line-height: 1.7; }
-
-  .rooms-grid {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3px;
-  }
-
-  .room-card {
-    background: rgba(255,255,255,0.04);
-    padding: 44px 36px;
-    border: 1px solid rgba(232,201,122,0.08);
-    transition: background 0.3s, border-color 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .room-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px;
-    height: 0;
-    background: var(--amber);
-    transition: height 0.4s ease;
-  }
-
-  .room-card:hover::before { height: 100%; }
-  .room-card:hover { background: rgba(232,201,122,0.04); border-color: rgba(232,201,122,0.2); }
-  .room-num { font-family: 'Playfair Display', serif; font-size: 3rem; color: rgba(232,201,122,0.12); line-height: 1; margin-bottom: 20px; font-style: italic; }
-  .room-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--cream); margin-bottom: 16px; }
-  .room-body { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--smoke); line-height: 1.7; margin-bottom: 28px; }
-  .room-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-
-  .tag {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--amber);
-    border: 1px solid rgba(196,135,58,0.3);
-    padding: 5px 12px;
-  }
-
-  /* ── PARTY SECTION ── */
-  .party-section {
-    background: var(--party-dark);
-    padding: 0;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .party-noise {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
+  .ph-fade {
+    position: absolute; inset: 0; z-index: 1;
     background:
-      radial-gradient(ellipse 70% 60% at 50% 0%, rgba(192,57,43,0.22) 0%, transparent 70%),
-      radial-gradient(ellipse 50% 40% at 80% 100%, rgba(241,196,15,0.08) 0%, transparent 60%),
-      repeating-linear-gradient(
-        45deg,
-        transparent 0px, transparent 40px,
-        rgba(255,255,255,0.012) 40px, rgba(255,255,255,0.012) 41px
-      );
+      linear-gradient(to right, rgba(13,6,2,0.97) 0%, rgba(13,6,2,0.72) 48%, rgba(13,6,2,0.28) 100%),
+      linear-gradient(to top, rgba(13,6,2,0.65) 0%, transparent 38%);
   }
 
-  .party-inner {
-    position: relative;
-    z-index: 1;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 120px 60px;
+  .ph-content {
+    position: relative; z-index: 3;
+    padding: 0 80px;
+    max-width: 760px;
+    animation: riseIn 1.2s cubic-bezier(0.16,1,0.3,1) both;
   }
 
-  .party-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: start;
-    margin-bottom: 80px;
+  @keyframes riseIn {
+    from { opacity: 0; transform: translateY(46px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
-  .party-tagline {
+  .ph-eyebrow {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 0.8rem;
-    letter-spacing: 0.45em;
-    text-transform: uppercase;
-    color: var(--party-gold);
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
+    font-size: 0.78rem; letter-spacing: 0.46em; text-transform: uppercase;
+    color: var(--red-light); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 14px;
+    animation: riseIn 1.2s 0.08s both;
   }
+  .ph-eyebrow::before { content: ''; width: 38px; height: 1px; background: var(--red-light); opacity: 0.7; }
 
-  .party-tagline::before { content: ''; width: 36px; height: 1px; background: var(--party-gold); opacity: 0.6; }
-
-  .party-title {
+  .ph-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2.2rem, 4.5vw, 4rem);
-    font-weight: 700;
-    line-height: 1.05;
-    color: #fff;
-    margin-bottom: 8px;
+    font-size: clamp(3.2rem, 8.5vw, 7.2rem);
+    font-weight: 700; line-height: 0.94;
+    color: var(--cream); margin-bottom: 6px;
+    animation: riseIn 1.2s 0.14s both;
+  }
+  .ph-title-em { font-style: italic; color: var(--wheat); display: block; }
+
+  .ph-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.05rem, 1.9vw, 1.45rem);
+    font-weight: 300; color: rgba(245,237,216,0.58);
+    line-height: 1.65; max-width: 510px;
+    margin: 28px 0 44px;
+    animation: riseIn 1.2s 0.2s both;
+  }
+  .ph-tagline strong { color: var(--red-light); font-weight: 400; }
+
+  .ph-ctas {
+    display: flex; gap: 14px; flex-wrap: wrap;
+    animation: riseIn 1.2s 0.28s both;
   }
 
-  .party-title em { font-style: italic; color: var(--party-gold); }
-
-  .party-subtitle-lang {
+  .btn-fire {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--red); color: #fff;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
-    font-style: italic;
-    color: rgba(255,255,255,0.35);
-    margin-bottom: 32px;
-    letter-spacing: 0.05em;
-  }
-
-  .party-desc {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
-    font-weight: 300;
-    color: rgba(255,255,255,0.6);
-    line-height: 1.8;
-    margin-bottom: 40px;
-  }
-
-  .party-cta-group { display: flex; flex-direction: column; gap: 12px; }
-
-  .btn-party-primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    background: var(--party-gold);
-    color: #000;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 18px 36px;
+    font-size: 0.95rem; font-weight: 600;
+    letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none;
+    padding: 16px 36px;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 100%, 12px 100%);
     transition: background 0.3s, letter-spacing 0.3s;
   }
+  .btn-fire:hover { background: var(--red-light); letter-spacing: 0.28em; }
 
-  .btn-party-primary:hover { background: #f9d030; letter-spacing: 0.26em; }
-
-  .btn-party-secondary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    border: 1px solid rgba(241,196,15,0.35);
-    color: rgba(241,196,15,0.8);
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 10px;
+    border: 1px solid rgba(232,201,122,0.38);
+    color: var(--wheat);
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 16px 36px;
-    transition: all 0.3s;
+    font-size: 0.95rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none;
+    padding: 15px 34px;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .btn-ghost:hover { background: rgba(232,201,122,0.07); border-color: var(--wheat); }
+
+  .ph-scroll {
+    position: absolute; bottom: 40px; right: 58px; z-index: 3;
+    writing-mode: vertical-rl;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.66rem; letter-spacing: 0.36em; text-transform: uppercase;
+    color: rgba(232,201,122,0.38);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .ph-scroll::after {
+    content: ''; width: 1px; height: 54px;
+    background: linear-gradient(to bottom, rgba(232,201,122,0.35), transparent);
+    animation: pulseDown 2.2s ease infinite;
+  }
+  @keyframes pulseDown {
+    0%,100% { transform: scaleY(1); opacity: 0.38; }
+    50%     { transform: scaleY(1.3); opacity: 0.85; }
   }
 
-  .btn-party-secondary:hover { border-color: var(--party-gold); color: var(--party-gold); background: rgba(241,196,15,0.07); }
+  /* ══ USP STRIP ══ */
+  .usp-strip { background: var(--red); display: flex; flex-wrap: wrap; }
+  .usp-pill {
+    flex: 1; min-width: 200px; padding: 22px 30px;
+    border-right: 1px solid rgba(255,255,255,0.11);
+    display: flex; align-items: center; gap: 13px;
+    transition: background 0.3s;
+  }
+  .usp-pill:last-child { border-right: none; }
+  .usp-pill:hover { background: rgba(255,255,255,0.07); }
+  .usp-icon { font-size: 1.5rem; flex-shrink: 0; }
+  .usp-txt strong { display: block; color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; letter-spacing: 0.06em; }
+  .usp-txt span  { color: rgba(255,255,255,0.62); font-family: 'Cormorant Garamond', serif; font-size: 0.82rem; }
 
-  /* Party USPs */
-  .party-usps {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
+  /* ══ PARTY FEATURES — ivory/light ══ */
+  .party-feats {
+    background: var(--ivory);
+    padding: 100px 60px;
+    position: relative; overflow: hidden;
+  }
+  .party-feats::after {
+    content: '🎉';
+    position: absolute; right: -10px; bottom: -30px;
+    font-size: 20rem; opacity: 0.04; pointer-events: none; line-height: 1;
   }
 
-  .party-usp {
+  .pf-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+
+  .lbl-red { font-family: 'Cormorant Garamond', serif; font-size: 0.76rem; letter-spacing: 0.46em; text-transform: uppercase; color: var(--red); margin-bottom: 13px; }
+  .lbl-amber { font-family: 'Cormorant Garamond', serif; font-size: 0.76rem; letter-spacing: 0.46em; text-transform: uppercase; color: var(--amber); margin-bottom: 13px; }
+
+  .ttl-dark {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    color: var(--dark); margin-bottom: 14px;
+  }
+  .ttl-dark em { font-style: italic; color: var(--rust); }
+
+  .ttl-light {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    color: var(--cream); margin-bottom: 14px;
+  }
+  .ttl-light em { font-style: italic; color: var(--wheat); }
+
+  .sub-txt {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.18rem; font-weight: 300;
+    color: var(--smoke); max-width: 520px; line-height: 1.7; margin-bottom: 56px;
+  }
+
+  .pf-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px;
+  }
+  .pf-card {
+    background: var(--cream); padding: 34px 26px;
+    border-bottom: 3px solid transparent;
+    transition: border-bottom-color 0.3s, background 0.3s, transform 0.3s;
+  }
+  .pf-card:hover { border-bottom-color: var(--red); background: #fff; transform: translateY(-4px); }
+  .pf-icon { font-size: 2.1rem; margin-bottom: 13px; display: block; }
+  .pf-name { font-family: 'Playfair Display', serif; font-size: 0.98rem; color: var(--dark); margin-bottom: 7px; }
+  .pf-desc { font-family: 'Cormorant Garamond', serif; font-size: 0.92rem; color: var(--smoke); line-height: 1.6; }
+
+  /* ══ PRICING ══ */
+  .pricing-sec {
+    background: var(--dark2);
+    padding: 100px 60px;
+    position: relative; overflow: hidden;
+  }
+  .pricing-sec::before {
+    content: 'ŽURKA';
+    position: absolute; left: -60px; top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    font-family: 'Playfair Display', serif;
+    font-size: 18vw; font-weight: 700; font-style: italic;
+    color: rgba(192,57,43,0.045); white-space: nowrap;
+    pointer-events: none; line-height: 1;
+  }
+  .pricing-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center; position: relative; z-index: 1;
+  }
+  .pr-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.7rem);
+    color: var(--cream); line-height: 1.15; margin-bottom: 18px;
+  }
+  .pr-headline em { font-style: italic; color: var(--wheat); }
+  .pr-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.12rem; color: rgba(245,237,216,0.52);
+    line-height: 1.82; margin-bottom: 36px;
+  }
+  .pr-ctas { display: flex; flex-direction: column; gap: 11px; }
+
+  .pi-list { display: flex; flex-direction: column; }
+  .pi-row {
+    display: flex; gap: 15px; align-items: flex-start;
+    padding: 21px 0; border-bottom: 1px solid rgba(232,201,122,0.07);
+  }
+  .pi-row:first-child { padding-top: 0; }
+  .pi-check {
+    width: 26px; height: 26px; flex-shrink: 0; margin-top: 3px;
+    border: 1px solid var(--red);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--red); font-size: 0.82rem;
+  }
+  .pi-txt { font-family: 'Cormorant Garamond', serif; font-size: 1.03rem; color: rgba(245,237,216,0.68); line-height: 1.5; }
+  .pi-txt strong { color: var(--cream); display: block; margin-bottom: 2px; }
+
+  /* ══ TRANSITION ══ */
+  .trans-band {
+    background: var(--rust);
+    padding: 44px 60px; text-align: center; position: relative; overflow: hidden;
+  }
+  .trans-band::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(88deg, transparent 0, transparent 32px, rgba(255,255,255,0.025) 32px, rgba(255,255,255,0.025) 33px);
+  }
+  .trans-txt {
+    position: relative; z-index: 1;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 2.4vw, 1.7rem); font-style: italic;
+    color: rgba(245,237,216,0.9); letter-spacing: 0.03em;
+  }
+  .trans-txt em { color: var(--wheat); font-style: normal; }
+
+  /* ══ RETREAT ══ */
+  .retreat {
+    background: var(--dark);
+    padding: 110px 60px 80px;
+    position: relative; overflow: hidden;
+  }
+  .retreat::after {
+    content: 'SALAŠ';
+    position: absolute; right: -50px; bottom: -60px;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(12rem, 22vw, 20rem);
+    font-weight: 700; font-style: italic;
+    color: rgba(232,201,122,0.04);
+    line-height: 1; pointer-events: none; white-space: nowrap;
+  }
+  .retreat-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: start; position: relative; z-index: 1;
+  }
+  .retreat-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.12rem; color: var(--smoke); line-height: 1.88; margin-bottom: 30px;
+  }
+  .rating-badge {
+    display: inline-flex; align-items: center; gap: 14px;
     background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(241,196,15,0.08);
+    border: 1px solid rgba(232,201,122,0.14);
+    padding: 14px 26px; margin-bottom: 0;
+  }
+  .r-num { font-family: 'Playfair Display', serif; font-size: 2.3rem; color: var(--wheat); line-height: 1; }
+  .r-txt { font-family: 'Cormorant Garamond', serif; font-size: 0.83rem; color: var(--cream); letter-spacing: 0.06em; line-height: 1.4; }
+  .r-txt strong { display: block; color: var(--wheat); }
+
+  .feats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+  .feat-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(232,201,122,0.06);
+    padding: 26px 22px;
     border-left: 3px solid transparent;
-    padding: 28px 32px;
-    display: flex;
-    gap: 24px;
-    align-items: flex-start;
     transition: border-left-color 0.3s, background 0.3s;
   }
+  .feat-card:hover { border-left-color: var(--amber); background: rgba(232,201,122,0.04); }
+  .f-icon { font-size: 1.7rem; margin-bottom: 9px; display: block; }
+  .f-name { font-family: 'Playfair Display', serif; font-size: 0.96rem; color: var(--cream); margin-bottom: 5px; }
+  .f-desc { font-family: 'Cormorant Garamond', serif; font-size: 0.88rem; color: var(--smoke); line-height: 1.58; }
 
-  .party-usp:hover { border-left-color: var(--party-gold); background: rgba(241,196,15,0.04); }
-
-  .usp-icon { font-size: 2rem; flex-shrink: 0; margin-top: 2px; }
-
-  .usp-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    color: #fff;
-    margin-bottom: 6px;
+  /* ══ ROOMS ══ */
+  .rooms { background: var(--ivory); padding: 90px 60px; }
+  .rooms-header { max-width: 1200px; margin: 0 auto 54px; display: flex; justify-content: space-between; align-items: flex-end; gap: 36px; }
+  .rooms-aside { max-width: 320px; font-family: 'Cormorant Garamond', serif; font-size: 1.08rem; color: var(--smoke); line-height: 1.7; }
+  .rooms-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+  .room-card {
+    background: var(--cream); padding: 38px 30px;
+    border-top: 3px solid transparent;
+    transition: border-top-color 0.3s, background 0.3s, transform 0.3s;
   }
+  .room-card:hover { border-top-color: var(--amber); background: #fff; transform: translateY(-3px); }
+  .room-num { font-family: 'Playfair Display', serif; font-size: 2.6rem; color: rgba(196,135,58,0.15); line-height: 1; margin-bottom: 14px; font-style: italic; }
+  .room-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--dark); margin-bottom: 11px; }
+  .room-body { font-family: 'Cormorant Garamond', serif; font-size: 0.98rem; color: var(--smoke); line-height: 1.7; margin-bottom: 22px; }
+  .room-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-family: 'Cormorant Garamond', serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); border: 1px solid rgba(155,69,32,0.24); padding: 4px 10px; }
 
-  .usp-name-hu {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    color: var(--party-gold);
-    opacity: 0.7;
-    font-style: italic;
-    margin-bottom: 6px;
-  }
+  /* ══ GALLERY ══ */
+  .gallery { background: var(--parchment); padding: 90px 60px; text-align: center; }
+  .photo-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; max-width: 1200px; margin: 0 auto; }
+  .photo-cell { position: relative; overflow: hidden; aspect-ratio: 1; background: rgba(26,18,8,0.07); border: 1px dashed rgba(139,62,26,0.18); cursor: pointer; transition: border-color 0.3s; }
+  .photo-cell:nth-child(1) { grid-column: 1/3; grid-row: 1/3; aspect-ratio: unset; min-height: 300px; }
+  .photo-cell:nth-child(7) { grid-column: 4/6; grid-row: 2/4; aspect-ratio: unset; min-height: 230px; }
+  .photo-cell:hover { border-color: var(--amber); }
+  .photo-cell img { width: 100%; height: 100%; object-fit: cover; display: none; }
+  .photo-cell.has-image img { display: block; }
+  .photo-cell.has-image .cph { display: none; }
+  .cph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; color: rgba(139,62,26,0.28); }
+  .cph span { font-size: 1.3rem; }
+  .cph p { font-family: 'Cormorant Garamond', serif; font-size: 0.58rem; letter-spacing: 0.26em; text-transform: uppercase; }
+  .upload-hint { margin-top: 34px; padding: 18px 38px; border: 1px solid rgba(139,62,26,0.22); display: inline-flex; align-items: center; gap: 13px; color: rgba(139,62,26,0.52); font-family: 'Cormorant Garamond', serif; font-size: 0.92rem; letter-spacing: 0.12em; cursor: pointer; transition: all 0.3s; position: relative; }
+  .upload-hint:hover { border-color: var(--rust); color: var(--rust); background: rgba(155,69,32,0.04); }
+  .upload-hint input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
 
-  .usp-desc {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
-    color: rgba(255,255,255,0.5);
-    line-height: 1.6;
-  }
+  /* ══ ACTIVITIES ══ */
+  .activities { background: var(--forest); padding: 90px 60px; position: relative; overflow: hidden; }
+  .activities::before { content: ''; position: absolute; top: -80px; right: -80px; width: 420px; height: 420px; border-radius: 50%; border: 1px solid rgba(232,201,122,0.09); background: radial-gradient(circle, transparent 60%, rgba(232,201,122,0.04) 100%); }
+  .act-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+  .act-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(232,201,122,0.11); margin-top: 52px; }
+  .act-item { background: var(--forest); padding: 34px 24px; transition: background 0.3s; }
+  .act-item:hover { background: rgba(61,92,57,0.55); }
+  .act-emoji { font-size: 2rem; margin-bottom: 14px; display: block; }
+  .act-name { font-family: 'Playfair Display', serif; font-size: 1.08rem; color: var(--cream); margin-bottom: 8px; }
+  .act-desc { font-family: 'Cormorant Garamond', serif; font-size: 0.93rem; color: rgba(245,237,216,0.52); line-height: 1.6; }
 
-  /* Party Features Grid */
-  .party-features {
-    border-top: 1px solid rgba(241,196,15,0.1);
-    padding-top: 80px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 3px;
-    background: rgba(241,196,15,0.06);
-  }
-
-  .party-feat {
-    background: var(--party-dark);
-    padding: 40px 32px;
-    text-align: center;
-    transition: background 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .party-feat::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(to right, transparent, var(--party-gold), transparent);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .party-feat:hover { background: rgba(255,255,255,0.025); }
-  .party-feat:hover::after { opacity: 1; }
-
-  .party-feat-icon { font-size: 2.5rem; display: block; margin-bottom: 16px; }
-
-  .party-feat-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    color: #fff;
-    margin-bottom: 8px;
-  }
-
-  .party-feat-hu {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.8rem;
-    font-style: italic;
-    color: rgba(241,196,15,0.5);
-    margin-bottom: 10px;
-  }
-
-  .party-feat-desc {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.92rem;
-    color: rgba(255,255,255,0.4);
-    line-height: 1.6;
-  }
-
-  /* Pricing box */
-  .party-pricing {
-    margin-top: 80px;
-    background: rgba(255,255,255,0.025);
-    border: 1px solid rgba(241,196,15,0.15);
-    padding: 60px 56px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .party-pricing::before {
-    content: '🎉';
-    position: absolute;
-    right: 40px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 12rem;
-    opacity: 0.04;
-    pointer-events: none;
-  }
-
-  .pricing-eyebrow {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.8rem;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: var(--party-gold);
-    margin-bottom: 16px;
-  }
-
-  .pricing-headline {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
-    color: #fff;
-    margin-bottom: 16px;
-    line-height: 1.2;
-  }
-
-  .pricing-headline em { font-style: italic; color: var(--party-gold); }
-
-  .pricing-body {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    color: rgba(255,255,255,0.5);
-    line-height: 1.8;
-  }
-
-  .pricing-items { display: flex; flex-direction: column; gap: 20px; }
-
-  .pricing-item {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(241,196,15,0.08);
-  }
-
-  .pricing-item:last-child { border-bottom: none; padding-bottom: 0; }
-
-  .pricing-check {
-    width: 28px;
-    height: 28px;
-    border: 1px solid rgba(241,196,15,0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--party-gold);
-    font-size: 0.85rem;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .pricing-item-text { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
-  .pricing-item-text strong { color: #fff; display: block; margin-bottom: 2px; }
-
-  /* ── ACTIVITIES ── */
-  .activities {
-    background: var(--forest);
-    padding: 120px 60px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .activities::before {
-    content: '';
-    position: absolute;
-    top: -100px; right: -100px;
-    width: 500px; height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(45,74,42,0.0) 0%, rgba(232,201,122,0.06) 100%);
-    border: 1px solid rgba(232,201,122,0.08);
-  }
-
-  .activities-inner { max-width: 1200px; margin: 0 auto; position: relative; }
-  .activities-inner .section-label { color: var(--wheat); opacity: 0.7; }
-  .activities-inner .section-title { color: var(--cream); margin-bottom: 60px; }
-
-  .activities-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: rgba(232,201,122,0.1);
-  }
-
-  .activity-item { background: var(--forest); padding: 40px 30px; transition: background 0.3s; }
-  .activity-item:hover { background: rgba(45,74,42,0.6); }
-  .activity-emoji { font-size: 2.4rem; margin-bottom: 18px; display: block; }
-  .activity-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--cream); margin-bottom: 10px; }
-  .activity-desc { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: rgba(245,237,216,0.55); line-height: 1.6; }
-
-  /* ── NEARBY ── */
-  .nearby { background: var(--parchment); padding: 100px 60px; }
+  /* ══ NEARBY ══ */
+  .nearby { background: var(--cream); padding: 84px 60px; }
   .nearby-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
-  .nearby-inner .section-label { color: var(--rust); }
-  .nearby-inner .section-title { color: var(--dark); margin-bottom: 12px; }
-  .nearby-inner .section-body { color: var(--smoke); margin-bottom: 60px; }
+  .nearby-body { font-family: 'Cormorant Garamond', serif; font-size: 1.12rem; color: var(--smoke); max-width: 520px; margin: 0 auto 48px; line-height: 1.7; }
+  .nearby-grid { display: flex; justify-content: center; flex-wrap: wrap; border: 1px solid rgba(26,18,8,0.1); }
+  .ni { flex: 1; min-width: 165px; padding: 30px 18px; border-right: 1px solid rgba(26,18,8,0.08); text-align: center; transition: background 0.3s; }
+  .ni:last-child { border-right: none; }
+  .ni:hover { background: var(--ivory); }
+  .ni-icon { font-size: 1.7rem; margin-bottom: 9px; display: block; }
+  .ni-name { font-family: 'Playfair Display', serif; font-size: 0.9rem; color: var(--dark); margin-bottom: 5px; }
+  .ni-dist { font-family: 'Cormorant Garamond', serif; font-size: 0.84rem; letter-spacing: 0.1em; color: var(--amber); }
 
-  .nearby-items {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0;
-    border: 1px solid rgba(26,18,8,0.12);
-  }
+  /* ══ REVIEWS ══ */
+  .reviews { background: var(--parchment); padding: 90px 60px; }
+  .rev-inner { max-width: 1200px; margin: 0 auto; }
+  .rev-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin-top: 48px; }
+  .rev-card { background: var(--cream); padding: 34px 30px; transition: background 0.3s; }
+  .rev-card:hover { background: #fff; }
+  .rev-q { font-family: 'Playfair Display', serif; font-size: 3.2rem; color: rgba(155,69,32,0.17); line-height: 0.5; margin-bottom: 16px; font-style: italic; display: block; }
+  .rev-txt { font-family: 'Cormorant Garamond', serif; font-size: 1.02rem; font-style: italic; font-weight: 300; color: var(--smoke); line-height: 1.75; margin-bottom: 22px; }
+  .rev-stars { color: var(--amber); font-size: 0.84rem; margin-bottom: 7px; letter-spacing: 3px; }
+  .rev-author { font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dark); }
 
-  .nearby-item {
-    flex: 1;
-    min-width: 180px;
-    padding: 36px 24px;
-    border-right: 1px solid rgba(26,18,8,0.1);
-    text-align: center;
-    transition: background 0.3s;
-  }
+  /* ══ MAP ══ */
+  .map-sec { background: var(--dark); padding: 84px 60px; }
+  .map-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 52px; align-items: start; }
+  .map-desc { font-family: 'Cormorant Garamond', serif; font-size: 1.08rem; color: var(--smoke); line-height: 1.8; margin-bottom: 30px; }
+  .map-addr { background: rgba(255,255,255,0.03); border: 1px solid rgba(232,201,122,0.09); padding: 22px 26px; margin-bottom: 22px; font-family: 'Cormorant Garamond', serif; font-size: 1.02rem; color: var(--cream); line-height: 1.8; }
+  .map-addr strong { display: block; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--amber); margin-bottom: 7px; }
+  .btn-dir { display: block; background: var(--amber); color: var(--dark); font-family: 'Cormorant Garamond', serif; font-size: 0.88rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; padding: 14px 26px; text-align: center; transition: background 0.3s; }
+  .btn-dir:hover { background: var(--wheat); }
+  .map-embed { border: 1px solid rgba(232,201,122,0.09); overflow: hidden; }
+  .map-embed iframe { display: block; width: 100%; height: 390px; border: none; filter: grayscale(22%) sepia(14%); transition: filter 0.4s; }
+  .map-embed:hover iframe { filter: none; }
 
-  .nearby-item:last-child { border-right: none; }
-  .nearby-item:hover { background: white; }
-  .nearby-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
-  .nearby-name { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--dark); margin-bottom: 6px; }
-  .nearby-dist { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; letter-spacing: 0.1em; color: var(--amber); }
-
-  /* ── REVIEWS ── */
-  .reviews { background: var(--cream); padding: 120px 60px; }
-  .reviews-inner { max-width: 1200px; margin: 0 auto; }
-  .reviews-inner .section-label { color: var(--rust); }
-  .reviews-inner .section-title { color: var(--dark); margin-bottom: 60px; }
-
-  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
-
-  .review-card { background: var(--parchment); padding: 40px 36px; position: relative; transition: background 0.3s; }
-  .review-card:hover { background: white; }
-  .review-quote { font-family: 'Playfair Display', serif; font-size: 4rem; color: rgba(196,135,58,0.2); line-height: 0.5; margin-bottom: 20px; font-style: italic; display: block; }
-  .review-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; font-weight: 300; color: var(--smoke); line-height: 1.75; margin-bottom: 28px; }
-  .review-stars { color: var(--amber); font-size: 0.9rem; margin-bottom: 10px; letter-spacing: 3px; }
-  .review-author { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dark); }
-
-  /* ── MAP SECTION ── */
-  .map-section {
-    background: var(--dark);
-    padding: 100px 60px;
-  }
-
-  .map-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1.4fr;
-    gap: 60px;
-    align-items: start;
-  }
-
-  .map-text .section-label { color: var(--amber); }
-  .map-text .section-title { color: var(--cream); margin-bottom: 20px; }
-  .map-text .section-title em { color: var(--wheat); }
-
-  .map-desc {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    color: var(--smoke);
-    line-height: 1.8;
-    margin-bottom: 36px;
-  }
-
-  .map-address-block {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(232,201,122,0.1);
-    padding: 28px 32px;
-    font-family: 'Cormorant Garamond', serif;
-    color: var(--cream);
-    font-size: 1.05rem;
-    line-height: 1.9;
-    margin-bottom: 28px;
-  }
-
-  .map-address-block strong { color: var(--wheat); display: block; font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 8px; }
-
-  .map-embed {
-    border: 1px solid rgba(232,201,122,0.1);
-    overflow: hidden;
-    position: relative;
-  }
-
-  .map-embed iframe {
-    display: block;
-    width: 100%;
-    height: 420px;
-    border: none;
-    filter: grayscale(30%) sepia(20%);
-    transition: filter 0.4s;
-  }
-
-  .map-embed:hover iframe { filter: grayscale(0%) sepia(0%); }
-
-  .btn-directions {
-    display: block;
-    background: var(--amber);
-    color: var(--dark);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.95rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 16px 32px;
-    text-align: center;
-    margin-top: 16px;
-    transition: background 0.3s;
-  }
-
-  .btn-directions:hover { background: var(--wheat); }
-
-  /* ── CONTACT ── */
-  .contact {
-    background: var(--dark);
-    padding: 120px 60px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .contact::after {
-    content: 'SALAŠ';
-    position: absolute;
-    bottom: -60px;
-    right: -20px;
-    font-family: 'Playfair Display', serif;
-    font-size: 18vw;
-    font-weight: 700;
-    font-style: italic;
-    color: rgba(232,201,122,0.03);
-    line-height: 1;
-    pointer-events: none;
-  }
-
-  .contact-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
-    align-items: start;
-    position: relative;
-    z-index: 1;
-  }
-
-  .contact-text .section-label { color: var(--amber); }
-  .contact-text .section-title { color: var(--cream); margin-bottom: 24px; }
-  .contact-text .section-title em { color: var(--wheat); }
-
-  .contact-body { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--smoke); line-height: 1.8; margin-bottom: 48px; }
-
-  .contact-details { list-style: none; display: flex; flex-direction: column; gap: 20px; }
-
-  .contact-item {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(232,201,122,0.08);
-  }
-
-  .contact-item:last-child { border-bottom: none; }
-
-  .contact-icon {
-    width: 44px;
-    height: 44px;
-    background: rgba(196,135,58,0.12);
-    border: 1px solid rgba(196,135,58,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    flex-shrink: 0;
-  }
-
-  .contact-label { font-family: 'Cormorant Garamond', serif; font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--amber); display: block; margin-bottom: 4px; }
-  .contact-value { font-family: 'Crimson Pro', serif; font-size: 1.05rem; color: var(--cream); }
-  .contact-value a { color: inherit; text-decoration: none; }
-  .contact-value a:hover { color: var(--wheat); }
-
-  /* Messaging icons */
-  .msg-icons { display: flex; gap: 10px; align-items: center; margin-top: 4px; }
-  .msg-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(232,201,122,0.15);
-    padding: 4px 12px;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.1em;
-    color: rgba(232,201,122,0.7);
-    text-decoration: none;
-    transition: all 0.3s;
-  }
+  /* ══ CONTACT ══ */
+  .contact { background: var(--dark2); padding: 90px 60px; position: relative; overflow: hidden; }
+  .contact::after { content: 'PALIĆ'; position: absolute; bottom: -48px; right: -18px; font-family: 'Playfair Display', serif; font-size: 18vw; font-weight: 700; font-style: italic; color: rgba(232,201,122,0.03); line-height: 1; pointer-events: none; }
+  .contact-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 84px; align-items: start; position: relative; z-index: 1; }
+  .contact-body { font-family: 'Cormorant Garamond', serif; font-size: 1.08rem; color: var(--smoke); line-height: 1.82; margin-bottom: 42px; }
+  .ci-list { list-style: none; display: flex; flex-direction: column; }
+  .ci { display: flex; gap: 16px; align-items: flex-start; padding: 19px 0; border-bottom: 1px solid rgba(232,201,122,0.07); }
+  .ci:last-child { border-bottom: none; }
+  .ci-icon { width: 38px; height: 38px; flex-shrink: 0; background: rgba(196,135,58,0.09); border: 1px solid rgba(196,135,58,0.17); display: flex; align-items: center; justify-content: center; font-size: 1.05rem; }
+  .ci-lbl { font-family: 'Cormorant Garamond', serif; font-size: 0.7rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--amber); display: block; margin-bottom: 3px; }
+  .ci-val { font-family: 'Crimson Pro', serif; font-size: 0.98rem; color: var(--cream); }
+  .ci-val a { color: inherit; text-decoration: none; }
+  .ci-val a:hover { color: var(--wheat); }
+  .msg-row { display: flex; gap: 7px; margin-top: 6px; flex-wrap: wrap; }
+  .msg-badge { display: inline-flex; align-items: center; gap: 5px; background: rgba(255,255,255,0.04); border: 1px solid rgba(232,201,122,0.13); padding: 4px 11px; font-family: 'Cormorant Garamond', serif; font-size: 0.73rem; letter-spacing: 0.1em; color: rgba(232,201,122,0.62); text-decoration: none; transition: all 0.3s; }
   .msg-badge:hover { border-color: var(--amber); color: var(--wheat); }
+  .soc-row { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 6px; }
+  .soc-link { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.03); border: 1px solid rgba(232,201,122,0.09); padding: 5px 13px; font-family: 'Cormorant Garamond', serif; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(232,201,122,0.52); text-decoration: none; transition: all 0.3s; }
+  .soc-link:hover { border-color: var(--amber); color: var(--wheat); background: rgba(196,135,58,0.06); }
 
-  /* Social links */
-  .social-links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 4px; }
-  .social-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(232,201,122,0.12);
-    padding: 7px 16px;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.82rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(232,201,122,0.6);
-    text-decoration: none;
-    transition: all 0.3s;
-  }
-  .social-link:hover { border-color: var(--amber); color: var(--wheat); background: rgba(196,135,58,0.07); }
+  .bk-box { background: rgba(255,255,255,0.02); border: 1px solid rgba(232,201,122,0.09); padding: 44px 40px; }
+  .bk-box h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--cream); margin-bottom: 7px; }
+  .bk-box h3 em { font-style: italic; color: var(--wheat); }
+  .bk-box p { font-family: 'Cormorant Garamond', serif; font-size: 0.98rem; color: var(--smoke); margin-bottom: 30px; line-height: 1.6; }
+  .btn-bk-red { display: block; width: 100%; background: var(--red); color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none; padding: 16px 28px; text-align: center; margin-bottom: 11px; transition: background 0.3s; }
+  .btn-bk-red:hover { background: var(--red-light); }
+  .btn-bk-amber { display: block; width: 100%; background: var(--amber); color: var(--dark); font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none; padding: 16px 28px; text-align: center; margin-bottom: 11px; transition: background 0.3s; }
+  .btn-bk-amber:hover { background: var(--wheat); }
+  .btn-bk-ghost { display: block; width: 100%; border: 1px solid rgba(232,201,122,0.27); color: rgba(232,201,122,0.62); font-family: 'Cormorant Garamond', serif; font-size: 0.88rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; padding: 14px 28px; text-align: center; transition: all 0.3s; }
+  .btn-bk-ghost:hover { background: rgba(232,201,122,0.07); color: var(--wheat); border-color: rgba(232,201,122,0.42); }
+  .bk-note { margin-top: 16px; font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; color: rgba(122,110,95,0.52); text-align: center; font-style: italic; }
 
-  .booking-box {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(232,201,122,0.12);
-    padding: 56px 48px;
-  }
+  /* ══ FOOTER ══ */
+  footer { background: #0d0a05; padding: 34px 52px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(232,201,122,0.06); flex-wrap: wrap; gap: 13px; }
+  .f-logo { font-family: 'Playfair Display', serif; font-size: 0.92rem; color: rgba(232,201,122,0.33); letter-spacing: 0.15em; }
+  .f-soc { display: flex; gap: 18px; }
+  .f-soc a { font-family: 'Cormorant Garamond', serif; font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(122,110,95,0.42); text-decoration: none; transition: color 0.3s; }
+  .f-soc a:hover { color: rgba(232,201,122,0.58); }
+  .f-copy { font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; color: rgba(122,110,95,0.33); }
 
-  .booking-box h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--cream); margin-bottom: 8px; }
-  .booking-box h3 em { font-style: italic; color: var(--wheat); }
-  .booking-box p { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--smoke); margin-bottom: 36px; line-height: 1.6; }
+  /* ══ UTIL ══ */
+  .divider { width: 50px; height: 2px; background: var(--amber); margin: 18px 0 28px; }
+  .divider-red { width: 50px; height: 2px; background: var(--red); margin: 18px 0 28px; }
 
-  .btn-book {
-    display: block;
-    width: 100%;
-    background: var(--amber);
-    color: var(--dark);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 18px 32px;
-    text-align: center;
-    margin-bottom: 16px;
-    transition: background 0.3s;
-  }
-
-  .btn-book:hover { background: var(--wheat); }
-
-  .btn-secondary {
-    display: block;
-    width: 100%;
-    border: 1px solid rgba(232,201,122,0.3);
-    color: rgba(232,201,122,0.7);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 16px 32px;
-    text-align: center;
-    transition: all 0.3s;
-  }
-
-  .btn-secondary:hover { background: rgba(232,201,122,0.08); color: var(--wheat); border-color: rgba(232,201,122,0.5); }
-
-  .booking-note { margin-top: 20px; font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; color: rgba(122,110,95,0.6); text-align: center; font-style: italic; }
-
-  /* ── FOOTER ── */
-  footer {
-    background: #100e07;
-    padding: 40px 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid rgba(232,201,122,0.06);
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-
-  .footer-logo { font-family: 'Playfair Display', serif; font-size: 1rem; color: rgba(232,201,122,0.4); letter-spacing: 0.15em; }
-  .footer-copy { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; color: rgba(122,110,95,0.4); letter-spacing: 0.05em; }
-  .footer-social { display: flex; gap: 16px; }
-  .footer-social a { font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(122,110,95,0.4); text-decoration: none; transition: color 0.3s; }
-  .footer-social a:hover { color: rgba(232,201,122,0.6); }
-
-  /* ── DIVIDER ── */
-  .divider { width: 60px; height: 2px; background: var(--amber); margin: 24px 0; }
-
-  /* ── RESPONSIVE ── */
+  /* ══ RESPONSIVE ══ */
   @media (max-width: 1000px) {
-    nav { padding: 16px 24px; }
+    nav { padding: 14px 20px; }
     .nav-links { display: none; }
-    .hero-content { padding: 0 32px 60px; }
-    .mode-split { grid-template-columns: 1fr; }
-    .amenities-inner, .contact-inner, .map-inner, .party-header { grid-template-columns: 1fr; gap: 48px; }
-    .rooms-grid { grid-template-columns: 1fr; }
-    .activities-list { grid-template-columns: 1fr 1fr; }
-    .reviews-grid { grid-template-columns: 1fr; }
+    .ph-content { padding: 0 26px; }
+    .retreat-inner, .pricing-inner, .contact-inner, .map-inner { grid-template-columns: 1fr; gap: 40px; }
+    .rooms-header { flex-direction: column; align-items: flex-start; }
+    .rooms-grid, .rev-grid { grid-template-columns: 1fr; }
+    .pf-grid, .act-grid, .feats-grid { grid-template-columns: 1fr 1fr; }
     .photo-grid { grid-template-columns: repeat(3, 1fr); }
     .photo-cell:nth-child(1), .photo-cell:nth-child(7) { grid-column: auto; grid-row: auto; min-height: auto; }
-    .party-features { grid-template-columns: 1fr 1fr; }
-    .party-pricing { grid-template-columns: 1fr; }
+    .pricing-sec::before { display: none; }
     footer { flex-direction: column; text-align: center; }
+    .usp-strip { flex-direction: column; }
+    .usp-pill { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.09); }
+    .ph-ctas { flex-direction: column; }
+    .party-feats, .pricing-sec, .retreat, .rooms, .gallery, .activities, .nearby, .reviews, .map-sec, .contact { padding-left: 28px; padding-right: 28px; }
   }
-
   @media (max-width: 600px) {
-    .party-features { grid-template-columns: 1fr; }
-    .activities-list { grid-template-columns: 1fr; }
-    .hero-ctas { flex-direction: column; }
+    .pf-grid, .act-grid, .feats-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -1187,108 +531,120 @@
 <nav>
   <a href="#" class="nav-logo">Etno Salaš · Palić</a>
   <ul class="nav-links">
-    <li><a href="#amenities">Sadržaji</a></li>
+    <li><a href="#party-feats">Zakup Salaša</a></li>
+    <li><a href="#retreat">Odmor</a></li>
     <li><a href="#gallery">Galerija</a></li>
     <li><a href="#activities">Aktivnosti</a></li>
-    <li><a href="#party" class="party-link">🎉 Ekskluzivni Zakup</a></li>
-    <li><a href="#contact">Kontakt</a></li>
+    <li><a href="#contact" class="hl">Kontakt</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-pattern"></div>
-  <div class="hero-photos">
-    <div class="hero-photo-slot"><img src="photo_01.jpg" alt="Etno Salaš Palić"></div>
-    <div class="hero-photo-slot"><img src="photo_02.jpg" alt="Etno Salaš Palić"></div>
-    <div class="hero-photo-slot"><img src="photo_03.jpg" alt="Etno Salaš Palić"></div>
-    <div class="hero-photo-slot"><img src="photo_04.jpg" alt="Etno Salaš Palić"></div>
-    <div class="hero-photo-slot"><img src="photo_05.jpg" alt="Etno Salaš Palić"></div>
+<!-- ══ PARTY HERO ══ -->
+<section class="party-hero">
+  <div class="ph-bg"></div>
+  <div class="ph-wm">SALAŠ</div>
+  <div class="ph-photos">
+    <div class="php"><img src="photo_01.jpg" alt="Etno Salaš"></div>
+    <div class="php"><img src="photo_02.jpg" alt="Etno Salaš"></div>
+    <div class="php"><img src="photo_03.jpg" alt="Etno Salaš"></div>
+    <div class="php"><img src="photo_04.jpg" alt="Etno Salaš"></div>
+    <div class="php"><img src="photo_05.jpg" alt="Etno Salaš"></div>
   </div>
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">Palić, Vojvodina · Srbija</p>
-    <h1 class="hero-title">Etno Salaš<br><em>Palić</em></h1>
-    <p class="hero-subtitle">Autentično vojvođansko domaćinstvo za odmor i nezaboravne proslave — gde sloboda počinje.</p>
-    <div class="hero-ctas">
-      <a href="#contact" class="hero-cta">Rezervišite Boravak →</a>
-      <a href="#party" class="hero-cta party">🎉 Ekskluzivni Zakup →</a>
+  <div class="ph-fade"></div>
+  <div class="ph-content">
+    <p class="ph-eyebrow">Ekskluzivni Zakup · Palić, Vojvodina</p>
+    <h1 class="ph-title">
+      Zakupite<br>
+      <span class="ph-title-em">Ceo Salaš.</span>
+    </h1>
+    <p class="ph-tagline">
+      Roštilj, bazen, pečenje prasetine, brutalni zvuk — i <strong>nula komšija, nula ograničenja buke, nula skrivenih troškova.</strong> Donesite svoju piću i napravite žurku godine!
+    </p>
+    <div class="ph-ctas">
+      <a href="tel:+38163505727" class="btn-fire">📞 Rezervišite Termin</a>
+      <a href="https://wa.me/38163505727" target="_blank" class="btn-ghost">💬 WhatsApp / Viber</a>
     </div>
   </div>
-  <span class="hero-scroll">Skroluj</span>
+  <span class="ph-scroll">Skroluj</span>
 </section>
 
-<!-- MODE SPLIT -->
-<div class="mode-split">
-  <a href="#amenities" class="mode-card relax">
-    <p class="mode-tag">Odmor · Opuštanje</p>
-    <h2 class="mode-title">Mir i Ravnica</h2>
-    <p class="mode-body">Privatni bazen, džakuzi, kamin i vojvođansko nebo. Idealno za porodice i parove koji žele pravi predah.</p>
-    <p class="mode-arrow">Istraži smeštaj →</p>
-  </a>
-  <a href="#party" class="mode-card party">
-    <p class="mode-tag">Proslava · Zabava</p>
-    <h2 class="mode-title">Ceo <em>Salaš</em> — Samo Vaš</h2>
-    <p class="mode-body">Zakup celokupne infrastrukture. Profesionalni zvuk, pečenje prasetine, bazen. Nema komšija, nema zakonom propisane tišine.</p>
-    <p class="mode-arrow">Saznaj više o ekskluzivnom zakupu →</p>
-  </a>
+<!-- USP STRIP -->
+<div class="usp-strip">
+  <div class="usp-pill"><span class="usp-icon">🚫</span><div class="usp-txt"><strong>Nema Komšija</strong><span>Totalna izolacija — vi diktirate jačinu zvuka</span></div></div>
+  <div class="usp-pill"><span class="usp-icon">🛒</span><div class="usp-txt"><strong>Donesite Vlastito</strong><span>Pivo i meso po prodajnoj ceni — nema korveta</span></div></div>
+  <div class="usp-pill"><span class="usp-icon">🎛️</span><div class="usp-txt"><strong>Profi Oprema</strong><span>Industrijski zvuk, DJ pult, pečenje prasetine</span></div></div>
+  <div class="usp-pill"><span class="usp-icon">🅿️</span><div class="usp-txt"><strong>Parking 50+ Auta</strong><span>Zatvoreni privatni parking bez brige</span></div></div>
 </div>
 
-<!-- GALLERY -->
-<section class="gallery-section" id="gallery">
-  <p class="section-label">Mesto</p>
-  <h2 class="section-title">Prizori <em>Salaškog Života</em></h2>
-  <div class="photo-grid" id="photoGrid">
-    <div class="photo-cell"><img id="img0" src="photo_01.jpg" alt="Etno Salaš foto 1" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-    <div class="photo-cell"><img id="img1" src="photo_02.jpg" alt="Etno Salaš foto 2" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-    <div class="photo-cell"><img id="img2" src="photo_03.jpg" alt="Etno Salaš foto 3" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-    <div class="photo-cell"><img id="img3" src="photo_04.jpg" alt="Etno Salaš foto 4" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-    <div class="photo-cell"><img id="img4" src="photo_05.jpg" alt="Etno Salaš foto 5" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-    <div class="photo-cell"><img id="img5" src="photo_06.jpg" alt="Etno Salaš foto 6" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-    <div class="photo-cell"><img id="img6" src="photo_07.jpg" alt="Etno Salaš foto 7" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-    <div class="photo-cell"><img id="img7" src="photo_08.jpg" alt="Etno Salaš foto 8" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-    <div class="photo-cell"><img id="img8" src="photo_09.jpg" alt="Etno Salaš foto 9" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-    <div class="photo-cell"><img id="img9" src="photo_10.jpg" alt="Etno Salaš foto 10" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-    <div class="photo-cell"><img id="img10" src="photo_11.jpg" alt="Etno Salaš foto 11" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-    <div class="photo-cell"><img id="img11" src="photo_12.jpg" alt="Etno Salaš foto 12" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-    <div class="photo-cell"><img id="img12" src="photo_13.jpg" alt="Etno Salaš foto 13" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+<!-- PARTY FEATURES -->
+<section class="party-feats" id="party-feats">
+  <div class="pf-inner">
+    <p class="lbl-red">Šta Dobijate</p>
+    <h2 class="ttl-dark">Sve što vam treba za<br><em>Žurku Godine</em></h2>
+    <p class="sub-txt">Jedan fiksni iznos — cela infrastruktura. Na hrani i piću uštedite koliko god želite jer sve donosite sami.</p>
+    <div class="pf-grid">
+      <div class="pf-card"><span class="pf-icon">🔊</span><p class="pf-name">Brutalni Zvučni Sistem</p><p class="pf-desc">Industrijska tehnika sa mogućnošću DJ pulta — zvuk koji se oseti u svakom uglu imanja.</p></div>
+      <div class="pf-card"><span class="pf-icon">💡</span><p class="pf-name">Profesionalna Rasveta</p><p class="pf-desc">Atmosferska rasveta prilagođena noćnoj proslavi — efekti svetla koji postavljaju ton.</p></div>
+      <div class="pf-card"><span class="pf-icon">🐷</span><p class="pf-name">Pečenje Prasetine</p><p class="pf-desc">Izgrađen roštilj i kompletna oprema za pečenje — pravi gurmanski ugao na otvorenom.</p></div>
+      <div class="pf-card"><span class="pf-icon">🧊</span><p class="pf-name">Veliki Rashladni Kapacitet</p><p class="pf-desc">Ogromni kapacitet hlađenja isključivo za vaša pića — ništa ne ostaje toplo ni tokom vrele noći.</p></div>
+      <div class="pf-card"><span class="pf-icon">🏊</span><p class="pf-name">Privatni Bazen</p><p class="pf-desc">Privatni bazen i obala jezera — samo vi i vaše društvo, bez podeljenog prostora.</p></div>
+      <div class="pf-card"><span class="pf-icon">⚽</span><p class="pf-name">Sportska Zona</p><p class="pf-desc">Fudbalski i odbojkaški teren za aktivan deo žurke i međuigru gostiju.</p></div>
+      <div class="pf-card"><span class="pf-icon">🅿️</span><p class="pf-name">Parking za 50+ Automobila</p><p class="pf-desc">Bezbedan zatvoreni privatni parking — svi dolaze, niko se ne brine gde parkira.</p></div>
+      <div class="pf-card"><span class="pf-icon">🌒</span><p class="pf-name">Bez Vremenskog Ograničenja</p><p class="pf-desc">Nema kasnog zatvaranja — salaš je vaš onoliko dugo koliko vam treba.</p></div>
+    </div>
   </div>
-  <label class="upload-hint">
-    <span>📷</span> Dodaj Fotografije
-    <input type="file" multiple accept="image/*" onchange="loadAllPhotos(event)">
-  </label>
 </section>
 
-<!-- AMENITIES -->
-<section class="amenities" id="amenities">
-  <div class="amenities-inner">
-    <div class="amenities-text">
-      <p class="section-label">Iskustvo</p>
-      <h2 class="section-title">Sve Što Vam <em>Treba i Više</em></h2>
-      <div class="divider"></div>
-      <p class="amenities-desc">
-        Etno Salaš Palić je pravi seoski odmor smešten na ravnici Vojvodine. Samo 2,4 km od centra Palića, ovo autentično domaćinstvo nudi privatni bazen, džakuzi, otvoreni kamin, i onaj usporeni domaćinski duh koji goste uvek vraća.
-      </p>
-      <p class="amenities-desc">
-        Domaćin Akoš i njegova porodica govore srpski, mađarski i engleski, i trude se da svaki boravak bude kao povratak kući. Ocena <strong>8,8 / 10</strong> od strane verifikovanih gostiju — parovi su lokaciju ocenili sa 8,9.
-      </p>
-      <div class="rating-badge">
-        <span class="rating-num">8.8</span>
-        <div class="rating-text">
-          <strong>Odlično</strong>
-          Ocena Verifikovanih Gostiju
-        </div>
+<!-- PRICING -->
+<section class="pricing-sec" id="pricing">
+  <div class="pricing-inner">
+    <div>
+      <p class="lbl-red">Cenovnik</p>
+      <div class="divider-red"></div>
+      <h2 class="pr-headline">Jedan fiksni iznos —<br><em>sve uključeno.</em></h2>
+      <p class="pr-body">Kod nas nema komplikovanih cena menija i pivskih karata. Za jedan fiksni iznos zakupite celu infrastrukturu, a na hrani i piću uštedite koliko god želite — kupujete sami po prodajnoj ceni.</p>
+      <div class="pr-ctas">
+        <a href="tel:+38163505727" class="btn-fire">📞 Pozovite za Cenu i Termin</a>
+        <a href="https://wa.me/38163505727" target="_blank" class="btn-ghost">💬 Pišite na WhatsApp</a>
       </div>
     </div>
-    <div class="features-grid">
-      <div class="feature-card"><span class="feature-icon">🏊</span><p class="feature-name">Privatni Bazen</p><p class="feature-desc">Veliki otvoreni bazen, idealan za duge letnje dane u vojvođanskom suncu.</p></div>
-      <div class="feature-card"><span class="feature-icon">🛁</span><p class="feature-name">Džakuzi / Spoljašnja Kada</p><p class="feature-desc">Otvoreni džakuzi za opuštajuće večeri pod vedrim nebom.</p></div>
-      <div class="feature-card"><span class="feature-icon">🔥</span><p class="feature-name">Otvoreni Kamin</p><p class="feature-desc">Centralno mesto za večernja druženja — roštilj, razgovor i posmatranje zvezda.</p></div>
-      <div class="feature-card"><span class="feature-icon">🍖</span><p class="feature-name">Roštilj</p><p class="feature-desc">Potpuna oprema za roštiljanje na svežem seoskom vazduhu.</p></div>
-      <div class="feature-card"><span class="feature-icon">🏐</span><p class="feature-name">Odbojkaški Teren</p><p class="feature-desc">Sportski sadržaj za goste koji žele da ostanu aktivni tokom boravka.</p></div>
-      <div class="feature-card"><span class="feature-icon">👨‍👩‍👧</span><p class="feature-name">Dečije Igralište</p><p class="feature-desc">Unutrašnji i spoljašnji prostor za igru — cela porodica je dobrodošla.</p></div>
-      <div class="feature-card"><span class="feature-icon">🎤</span><p class="feature-name">Karaoke</p><p class="feature-desc">Večernja zabava za društva koja žele da provedu noć uz pesmu.</p></div>
-      <div class="feature-card"><span class="feature-icon">📶</span><p class="feature-name">Besplatan WiFi i Parking</p><p class="feature-desc">Brzi internet i besplatan privatni parking — bez rezervacije.</p></div>
+    <div class="pi-list">
+      <div class="pi-row"><div class="pi-check">✓</div><div class="pi-txt"><strong>Celokupna infrastruktura uključena</strong>Zvuk, rasveta, rashladni kapacitet, roštilj, sport, parking — sve u jednoj fiksnoj ceni.</div></div>
+      <div class="pi-row"><div class="pi-check">✓</div><div class="pi-txt"><strong>Donesite vlastitu hranu i piće</strong>Kupujete u prodavnici po redovnoj ceni. Nema korveta, nema fiksnih menija, nema skrivenih naknada.</div></div>
+      <div class="pi-row"><div class="pi-check">✓</div><div class="pi-txt"><strong>Bez komšija i ograničenja buke</strong>Salaš je potpuno izolovan — vi diktirate jačinu zvuka celu noć.</div></div>
+      <div class="pi-row"><div class="pi-check">✓</div><div class="pi-txt"><strong>Cena po dogovoru</strong>Pozovite Akoša za vaš termin i prilagođenu ponudu — svaka proslava je drugačija.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSITION -->
+<div class="trans-band">
+  <p class="trans-txt">…ili jednostavno dođite na <em>pravi seoski odmor.</em></p>
+</div>
+
+<!-- RETREAT -->
+<section class="retreat" id="retreat">
+  <div class="retreat-inner">
+    <div>
+      <p class="lbl-amber">Odmor i Opuštanje</p>
+      <h2 class="ttl-light">Mir Vojvođanske<br><em>Ravnice</em></h2>
+      <div class="divider"></div>
+      <p class="retreat-desc">Etno Salaš Palić je autentično seosko domaćinstvo samo 2,4 km od centra Palića. Privatni bazen, džakuzi, otvoreni kamin i onaj usporeni domaćinski duh koji goste uvek vraća.</p>
+      <p class="retreat-desc">Domaćin Akoš i njegova porodica govore srpski, mađarski i engleski, i trude se da svaki boravak bude kao povratak kući. Ocena <strong>8,8 / 10</strong> od verifikovanih gostiju — parovi su lokaciju ocenili sa 8,9.</p>
+      <div class="rating-badge">
+        <span class="r-num">8.8</span>
+        <div class="r-txt"><strong>Odlično</strong>Ocena Verifikovanih Gostiju</div>
+      </div>
+    </div>
+    <div class="feats-grid">
+      <div class="feat-card"><span class="f-icon">🏊</span><p class="f-name">Privatni Bazen</p><p class="f-desc">Veliki otvoreni bazen za duge letnje dane u vojvođanskom suncu.</p></div>
+      <div class="feat-card"><span class="f-icon">🛁</span><p class="f-name">Džakuzi</p><p class="f-desc">Otvoreni džakuzi za opuštajuće večeri pod vedrim nebom.</p></div>
+      <div class="feat-card"><span class="f-icon">🔥</span><p class="f-name">Otvoreni Kamin</p><p class="f-desc">Centralno mesto za večernja druženja, razgovor i posmatranje zvezda.</p></div>
+      <div class="feat-card"><span class="f-icon">🍖</span><p class="f-name">Roštilj</p><p class="f-desc">Potpuna oprema za roštiljanje na svežem seoskom vazduhu.</p></div>
+      <div class="feat-card"><span class="f-icon">🏐</span><p class="f-name">Odbojkaški Teren</p><p class="f-desc">Sportski sadržaj za aktivne goste tokom boravka.</p></div>
+      <div class="feat-card"><span class="f-icon">👨‍👩‍👧</span><p class="f-name">Dečije Igralište</p><p class="f-desc">Unutrašnji i spoljašnji prostor za igru — cela porodica dobrodošla.</p></div>
+      <div class="feat-card"><span class="f-icon">🎤</span><p class="f-name">Karaoke</p><p class="f-desc">Večernja zabava za društva koja žele da provedu noć uz pesmu.</p></div>
+      <div class="feat-card"><span class="f-icon">📶</span><p class="f-name">WiFi i Parking</p><p class="f-desc">Brzi internet i besplatan privatni parking bez rezervacije.</p></div>
     </div>
   </div>
 </section>
@@ -1297,185 +653,53 @@
 <section class="rooms" id="rooms">
   <div class="rooms-header">
     <div>
-      <p class="section-label">Smeštaj</p>
-      <h2 class="section-title" style="color:var(--cream)">Vaš <em style="color:var(--wheat)">Dom</em> Ovde</h2>
+      <p class="lbl-red" style="color:var(--rust);">Smeštaj</p>
+      <h2 class="ttl-dark">Vaš <em>Dom</em> Ovde</h2>
     </div>
-    <p class="rooms-desc">Dve udobne spavaće sobe za do 5 gostiju, sa svim pogodnostima doma i dušom vojvođanske ravnice.</p>
+    <p class="rooms-aside">Dve udobne spavaće sobe za do 5 gostiju, sa svim pogodnostima doma i dušom vojvođanske ravnice.</p>
   </div>
   <div class="rooms-grid">
-    <div class="room-card">
-      <p class="room-num">01</p>
-      <h3 class="room-name">Seosko Domaćinstvo</h3>
-      <p class="room-body">Prostrana kuća za odmor sa terasom, pogledom na baštu i potpuno opremljenom kuhinjom — sve što vam treba za potpun seoski odmor.</p>
-      <div class="room-tags"><span class="tag">2 Spavaće Sobe</span><span class="tag">Do 5 Gostiju</span><span class="tag">Dnevni Boravak</span><span class="tag">Kuhinja</span></div>
-    </div>
-    <div class="room-card">
-      <p class="room-num">02</p>
-      <h3 class="room-name">3 Kupatila</h3>
-      <p class="room-body">Izdašni kupatilski sadržaj uključujući džakuzi, tuš i odvojen toalet — jer udobnost je jednako važna kao i pogled na ravnicu.</p>
-      <div class="room-tags"><span class="tag">Džakuzi</span><span class="tag">Tuš</span><span class="tag">Fen</span><span class="tag">Besplatni Toaletni Pribor</span></div>
-    </div>
-    <div class="room-card">
-      <p class="room-num">03</p>
-      <h3 class="room-name">Opremljen Enterijer</h3>
-      <p class="room-body">TV ravni ekran, zona za sedenje, kamin, mikrotalasna, frižider, veš mašina i radni sto — udobna baza za koliko god dugo poželite da ostanete.</p>
-      <div class="room-tags"><span class="tag">TV Ravni Ekran</span><span class="tag">Kamin</span><span class="tag">Veš Mašina</span><span class="tag">Dijetetski Meni</span></div>
-    </div>
+    <div class="room-card"><p class="room-num">01</p><h3 class="room-name">Seosko Domaćinstvo</h3><p class="room-body">Prostrana kuća za odmor sa terasom, pogledom na baštu i potpuno opremljenom kuhinjom — sve što vam treba za potpun seoski odmor.</p><div class="room-tags"><span class="tag">2 Spavaće Sobe</span><span class="tag">Do 5 Gostiju</span><span class="tag">Dnevni Boravak</span><span class="tag">Kuhinja</span></div></div>
+    <div class="room-card"><p class="room-num">02</p><h3 class="room-name">3 Kupatila</h3><p class="room-body">Izdašni kupatilski sadržaj uključujući džakuzi, tuš i odvojen toalet — jer udobnost je jednako važna kao i pogled na ravnicu.</p><div class="room-tags"><span class="tag">Džakuzi</span><span class="tag">Tuš</span><span class="tag">Fen</span><span class="tag">Toaletni Pribor</span></div></div>
+    <div class="room-card"><p class="room-num">03</p><h3 class="room-name">Opremljen Enterijer</h3><p class="room-body">TV ravni ekran, zona za sedenje, kamin, mikrotalasna, frižider, veš mašina i radni sto — udobna baza za koliko god dugo poželite.</p><div class="room-tags"><span class="tag">TV Ravni Ekran</span><span class="tag">Kamin</span><span class="tag">Veš Mašina</span><span class="tag">Dijetetski Meni</span></div></div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!-- PARTY / EVENT RENTAL SECTION -->
-<!-- ══════════════════════════════════════════════════════════ -->
-<section class="party-section" id="party">
-  <div class="party-noise"></div>
-  <div class="party-inner">
-
-    <!-- Header split: headline left, USPs right -->
-    <div class="party-header">
-      <div>
-        <p class="party-tagline">Ekskluzivni Zakup Imanja</p>
-        <h2 class="party-title">Zakupite<br><em>Ceo Salaš!</em></h2>
-        <p class="party-desc">
-          Profesionalni zvuk, bazen, pečenje prasetine i nula komšija. Donesite svoju piću po prodajnoj ceni — napravite žurku godine!
-        </p>
-        <div class="party-cta-group">
-          <a href="tel:+38163505727" class="btn-party-primary">📞 Rezervišite Termin!</a>
-          <a href="https://wa.me/38163505727" class="btn-party-secondary">💬 WhatsApp / Viber — Proverite slobodne termine</a>
-        </div>
-      </div>
-
-      <!-- 3 core USPs -->
-      <div class="party-usps">
-        <div class="party-usp">
-          <span class="usp-icon">🚫</span>
-          <div>
-            <p class="usp-name">Nema Komšija — Totalna Privatnost</p>
-            <p class="usp-desc">Nema zakonom propisane tišine, nema pozivanja policije. Vi određujete jačinu zvuka!</p>
-          </div>
-        </div>
-        <div class="party-usp">
-          <span class="usp-icon">🛒</span>
-          <div>
-            <p class="usp-name">Donesite Vlastito — Nema Skrivenih Troškova</p>
-            <p class="usp-desc">Donesite meso i pivo po prodajnoj ceni. Nema konobara, nema korveta, nema skrivenih naknada.</p>
-          </div>
-        </div>
-        <div class="party-usp">
-          <span class="usp-icon">🎛️</span>
-          <div>
-            <p class="usp-name">Profesionalna Oprema</p>
-            <p class="usp-desc">Ono što ne možete kod kuće — ovde možete. Industrijski zvučni sistem, DJ pult, profesionalna gastronomska terasa.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 8-feature grid -->
-    <div class="party-features">
-      <div class="party-feat">
-        <span class="party-feat-icon">🔊</span>
-        <p class="party-feat-name">Brutalni Zvučni Sistem</p>
-        <p class="party-feat-desc">Ugrađena tehnika sa mogućnošću DJ pulta — zvuk koji se oseti u svakom uglu imanja.</p>
-      </div>
-      <div class="party-feat">
-        <span class="party-feat-icon">💡</span>
-        <p class="party-feat-name">Profesionalna Rasveta</p>
-        <p class="party-feat-desc">Profesionalna rasveta za pravu atmosferu proslave — dan ili noć.</p>
-      </div>
-      <div class="party-feat">
-        <span class="party-feat-icon">🐷</span>
-        <p class="party-feat-name">Pečenje Prasetine</p>
-        <p class="party-feat-desc">Izgrađen roštilj i oprema za pečenje prasetine — pravi gurmanski ugao na otvorenom.</p>
-      </div>
-      <div class="party-feat">
-        <span class="party-feat-icon">🧊</span>
-        <p class="party-feat-name">Veliki Rashladni Kapacitet</p>
-        <p class="party-feat-desc">Ogromni kapacitet hlađenja isključivo za vaša pića — ništa ne ostaje toplo.</p>
-      </div>
-      <div class="party-feat">
-        <span class="party-feat-icon">🏊</span>
-        <p class="party-feat-name">Privatni Bazen</p>
-        <p class="party-feat-desc">Privatni bazen i obala jezera — samo vi i vaše društvo, bez podeljenog prostora.</p>
-      </div>
-      <div class="party-feat">
-        <span class="party-feat-icon">⚽</span>
-        <p class="party-feat-name">Sportska Zona</p>
-        <p class="party-feat-desc">Fudbalski i odbojkaški teren za aktivan deo proslave i međuigru između gostiju.</p>
-      </div>
-      <div class="party-feat">
-        <span class="party-feat-icon">🅿️</span>
-        <p class="party-feat-name">Parking za 50+ Automobila</p>
-        <p class="party-feat-desc">Bezbedan zatvoreni privatni parking za više od 50 automobila — bez gužve i brige.</p>
-      </div>
-      <div class="party-feat">
-        <span class="party-feat-icon">🌒</span>
-        <p class="party-feat-name">Cela Noć — Bez Ograničenja</p>
-        <p class="party-feat-desc">Nema vremenskog ograničenja — salaš je vaš onoliko dugo koliko vam treba.</p>
-      </div>
-    </div>
-
-    <!-- Pricing / value proposition -->
-    <div class="party-pricing">
-      <div>
-        <p class="pricing-eyebrow">Cenovnik</p>
-        <h3 class="pricing-headline">Jedan fiksni iznos —<br><em>sve uključeno.</em></h3>
-        <p class="pricing-body">
-          Kod nas nema komplikovanih cena menija i pivskih karata. Za jedan fiksni iznos zakupite celu infrastrukturu, a na hrani i piću uštedite koliko god želite.
-        </p>
-      </div>
-      <div class="pricing-items">
-        <div class="pricing-item">
-          <div class="pricing-check">✓</div>
-          <div class="pricing-item-text"><strong>Celokupna infrastruktura uključena</strong>Zvuk, rasveta, rashladni kapacitet, roštilj, sport, parking — sve u jednoj ceni.</div>
-        </div>
-        <div class="pricing-item">
-          <div class="pricing-check">✓</div>
-          <div class="pricing-item-text"><strong>Donesite vlastitu hranu i piće</strong>Kupujte u prodavnici po redovnoj ceni. Nema korveta, nema fiksnih menija.</div>
-        </div>
-        <div class="pricing-item">
-          <div class="pricing-check">✓</div>
-          <div class="pricing-item-text"><strong>Bez komšija i ograničenja buke</strong>Salaš je potpuno izolovan — vi diktirate jačinu zvuka.</div>
-        </div>
-        <div class="pricing-item">
-          <div class="pricing-check">✓</div>
-          <div class="pricing-item-text"><strong>Cena po dogovoru</strong>Pozovite Akoša za vaš termin i prilagođenu ponudu.</div>
-        </div>
-        <div style="margin-top:16px;">
-          <a href="tel:+38163505727" class="btn-party-primary" style="display:inline-flex; width:100%; justify-content:center;">📞 Pozovite za Cenu i Termin</a>
-        </div>
-      </div>
-    </div>
-
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <p class="lbl-red" style="color:var(--rust); margin-bottom:13px;">Galerija</p>
+  <h2 class="ttl-dark" style="margin-bottom:44px;">Prizori <em>Salaškog Života</em></h2>
+  <div class="photo-grid" id="photoGrid">
+    <div class="photo-cell"><img id="img0" src="photo_01.jpg" alt="foto 1" style="width:100%;height:100%;object-fit:cover;display:block;"><div class="cph"><span>📷</span><p>Dodaj foto</p></div></div>
+    <div class="photo-cell"><img id="img1" src="photo_02.jpg" alt="foto 2" style="width:100%;height:100%;object-fit:cover;display:block;"><div class="cph"><span>📷</span><p>Dodaj foto</p></div></div>
+    <div class="photo-cell"><img id="img2" src="photo_03.jpg" alt="foto 3" style="width:100%;height:100%;object-fit:cover;display:block;"><div class="cph"><span>📷</span><p>Dodaj foto</p></div></div>
+    <div class="photo-cell"><img id="img3" src="photo_04.jpg" alt="foto 4" style="width:100%;height:100%;object-fit:cover;display:block;"><div class="cph"><span>📷</span><p>Dodaj foto</p></div></div>
+    <div class="photo-cell"><img id="img4" src="photo_05.jpg" alt="foto 5" style="width:100%;height:100%;object-fit:cover;display:block;"><div class="cph"><span>📷</span><p>Dodaj foto</p></div></div>
+    <div class="photo-cell"><img id="img5" src="photo_06.jpg" alt="foto 6" style="width:100%;height:100%;object-fit:cover;display:block;"><div class="cph"><span>📷</span><p>Dodaj foto</p></div></div>
+    <div class="photo-cell"><img id="img6" src="photo_07.jpg" alt="foto 7" style="width:100%;height:100%;object-fit:cover;display:block;"><div class="cph"><span>📷</span><p>Dodaj foto</p></div></div>
+    <div class="photo-cell"><img id="img7" src="photo_08.jpg" alt="foto 8" style="width:100%;height:100%;object-fit:cover;display:block;"><div class="cph"><span>📷</span><p>Dodaj foto</p></div></div>
+    <div class="photo-cell"><img id="img8" src="photo_09.jpg" alt="foto 9" style="width:100%;height:100%;object-fit:cover;display:block;"><div class="cph"><span>📷</span><p>Dodaj foto</p></div></div>
+    <div class="photo-cell"><img id="img9" src="photo_10.jpg" alt="foto 10" style="width:100%;height:100%;object-fit:cover;display:block;"><div class="cph"><span>📷</span><p>Dodaj foto</p></div></div>
+    <div class="photo-cell"><img id="img10" src="photo_11.jpg" alt="foto 11" style="width:100%;height:100%;object-fit:cover;display:block;"><div class="cph"><span>📷</span><p>Dodaj foto</p></div></div>
+    <div class="photo-cell"><img id="img11" src="photo_12.jpg" alt="foto 12" style="width:100%;height:100%;object-fit:cover;display:block;"><div class="cph"><span>📷</span><p>Dodaj foto</p></div></div>
+    <div class="photo-cell"><img id="img12" src="photo_13.jpg" alt="foto 13" style="width:100%;height:100%;object-fit:cover;display:block;"><div class="cph"><span>📷</span><p>Dodaj foto</p></div></div>
   </div>
+  <label class="upload-hint">
+    <span>📷</span> Dodaj Fotografije
+    <input type="file" multiple accept="image/*" onchange="loadAllPhotos(event)">
+  </label>
 </section>
 
 <!-- ACTIVITIES -->
 <section class="activities" id="activities">
-  <div class="activities-inner">
-    <p class="section-label">Šta Raditi</p>
-    <h2 class="section-title">Život na <em style="font-style:italic">Salašu</em></h2>
-    <div class="activities-list">
-      <div class="activity-item">
-        <span class="activity-emoji">🚴</span>
-        <p class="activity-name">Vožnja Bicikla</p>
-        <p class="activity-desc">Ravna vojvođanska polja stvorena su za biciklizam — istražujte seoske puteve i staze sopstvenim tempom.</p>
-      </div>
-      <div class="activity-item">
-        <span class="activity-emoji">🎣</span>
-        <p class="activity-name">Ribolov</p>
-        <p class="activity-desc">Bacite udicu u obližnje jezero i kanale — ribolov je omiljena lokalna aktivnost u ovom delu Srbije.</p>
-      </div>
-      <div class="activity-item">
-        <span class="activity-emoji">🌊</span>
-        <p class="activity-name">Kupanje i Opuštanje</p>
-        <p class="activity-desc">Provedite lenje sate u bazenu ili se opustite u džakuziju — nema žurbe dok nebo seže do horizonta.</p>
-      </div>
-      <div class="activity-item">
-        <span class="activity-emoji">🌅</span>
-        <p class="activity-name">Šetnje u Prirodi</p>
-        <p class="activity-desc">Prošetajte kroz baštu i okolne voćnjake, posmatrajte čaplje i zlatno svetlo večeri.</p>
-      </div>
+  <div class="act-inner">
+    <p class="lbl-amber">Šta Raditi</p>
+    <h2 class="ttl-light">Život na <em>Salašu</em></h2>
+    <div class="act-grid">
+      <div class="act-item"><span class="act-emoji">🚴</span><p class="act-name">Vožnja Bicikla</p><p class="act-desc">Ravna vojvođanska polja stvorena su za biciklizam — istražujte seoske puteve sopstvenim tempom.</p></div>
+      <div class="act-item"><span class="act-emoji">🎣</span><p class="act-name">Ribolov</p><p class="act-desc">Bacite udicu u obližnje jezero i kanale — omiljena lokalna aktivnost u ovom delu Srbije.</p></div>
+      <div class="act-item"><span class="act-emoji">🌊</span><p class="act-name">Kupanje i Opuštanje</p><p class="act-desc">Lenje sate u bazenu ili džakuziju — nema žurbe dok nebo seže do horizonta.</p></div>
+      <div class="act-item"><span class="act-emoji">🌅</span><p class="act-name">Šetnje u Prirodi</p><p class="act-desc">Prošetajte kroz baštu i voćnjake, posmatrajte čaplje i zlatno svetlo večeri.</p></div>
     </div>
   </div>
 </section>
@@ -1483,75 +707,45 @@
 <!-- NEARBY -->
 <section class="nearby">
   <div class="nearby-inner">
-    <p class="section-label">Region</p>
-    <h2 class="section-title">Blizu <em style="font-style:italic; color:var(--rust)">Svega</em></h2>
-    <p class="section-body">Etno Salaš Palić nalazi se u srcu jednog od najlepših krajeva Srbije — nadohvat prirode, kulture i mađarske granice.</p>
-    <div class="nearby-items">
-      <div class="nearby-item"><span class="nearby-icon">🏖️</span><p class="nearby-name">Palićko Jezero</p><p class="nearby-dist">2,4 km</p></div>
-      <div class="nearby-item"><span class="nearby-icon">🏙️</span><p class="nearby-name">Subotica</p><p class="nearby-dist">8 km</p></div>
-      <div class="nearby-item"><span class="nearby-icon">🇭🇺</span><p class="nearby-name">Segedin, Mađarska</p><p class="nearby-dist">35 km</p></div>
-      <div class="nearby-item"><span class="nearby-icon">🦆</span><p class="nearby-name">Ludoško Jezero</p><p class="nearby-dist">U blizini</p></div>
-      <div class="nearby-item"><span class="nearby-icon">🏰</span><p class="nearby-name">Hajdukovo</p><p class="nearby-dist">U blizini</p></div>
-      <div class="nearby-item"><span class="nearby-icon">🌊</span><p class="nearby-name">Palićki Termalni Bazen</p><p class="nearby-dist">5 min vožnje</p></div>
+    <p class="lbl-red" style="color:var(--rust); margin-bottom:12px;">Region</p>
+    <h2 class="ttl-dark" style="margin-bottom:12px;">Blizu <em>Svega</em></h2>
+    <p class="nearby-body">Etno Salaš Palić u srcu jednog od najlepših krajeva Srbije — nadohvat prirode, kulture i mađarske granice.</p>
+    <div class="nearby-grid">
+      <div class="ni"><span class="ni-icon">🏖️</span><p class="ni-name">Palićko Jezero</p><p class="ni-dist">2,4 km</p></div>
+      <div class="ni"><span class="ni-icon">🏙️</span><p class="ni-name">Subotica</p><p class="ni-dist">8 km</p></div>
+      <div class="ni"><span class="ni-icon">🇭🇺</span><p class="ni-name">Segedin, Mađarska</p><p class="ni-dist">35 km</p></div>
+      <div class="ni"><span class="ni-icon">🦆</span><p class="ni-name">Ludoško Jezero</p><p class="ni-dist">U blizini</p></div>
+      <div class="ni"><span class="ni-icon">🏰</span><p class="ni-name">Hajdukovo</p><p class="ni-dist">U blizini</p></div>
+      <div class="ni"><span class="ni-icon">🌊</span><p class="ni-name">Palićki Termalni Bazen</p><p class="ni-dist">5 min vožnje</p></div>
     </div>
   </div>
 </section>
 
 <!-- REVIEWS -->
 <section class="reviews">
-  <div class="reviews-inner">
-    <p class="section-label">Utisci Gostiju</p>
-    <h2 class="section-title">Glasovi sa <em style="font-style:italic; color:var(--rust)">Salaša</em></h2>
-    <div class="reviews-grid">
-      <div class="review-card">
-        <span class="review-quote">"</span>
-        <p class="review-text">Lepše nego na slikama. Domaćin je ljubazan, spreman da pomogne u svakom trenutku. Salaš je idealan za porodično i svako drugo uživanje — čisto, uredno, kreveti udobni.</p>
-        <p class="review-stars">★★★★★</p>
-        <p class="review-author">— Verifikovani Gost, Srbija</p>
-      </div>
-      <div class="review-card">
-        <span class="review-quote">"</span>
-        <p class="review-text">Gostoljubivost, dvorište, džakuzi, bazen, jezero, odbojka, ležaljke, sobe — sve je bilo odlično. Pravi mini odmor.</p>
-        <p class="review-stars">★★★★★</p>
-        <p class="review-author">— Verifikovani Gost, Srbija</p>
-      </div>
-      <div class="review-card">
-        <span class="review-quote">"</span>
-        <p class="review-text">Privatnost, veliki prostor, bazen i džakuzi. Čiste sobe, dobri kreveti. Prijatan hlad u sobama i bez klime. Savršeno za ljubitelje prirode.</p>
-        <p class="review-stars">★★★★★</p>
-        <p class="review-author">— Verifikovani Gost, Slovačka</p>
-      </div>
+  <div class="rev-inner">
+    <p class="lbl-red" style="color:var(--rust); margin-bottom:12px;">Utisci Gostiju</p>
+    <h2 class="ttl-dark">Glasovi sa <em>Salaša</em></h2>
+    <div class="rev-grid">
+      <div class="rev-card"><span class="rev-q">"</span><p class="rev-txt">Lepše nego na slikama. Domaćin je ljubazan, spreman da pomogne u svakom trenutku. Salaš je idealan za porodično i svako drugo uživanje — čisto, uredno, kreveti udobni.</p><p class="rev-stars">★★★★★</p><p class="rev-author">— Verifikovani Gost, Srbija</p></div>
+      <div class="rev-card"><span class="rev-q">"</span><p class="rev-txt">Gostoljubivost, dvorište, džakuzi, bazen, jezero, odbojka, ležaljke, sobe — sve je bilo odlično. Pravi mini odmor.</p><p class="rev-stars">★★★★★</p><p class="rev-author">— Verifikovani Gost, Srbija</p></div>
+      <div class="rev-card"><span class="rev-q">"</span><p class="rev-txt">Privatnost, veliki prostor, bazen i džakuzi. Čiste sobe, dobri kreveti. Prijatan hlad u sobama i bez klime. Savršeno za ljubitelje prirode.</p><p class="rev-stars">★★★★★</p><p class="rev-author">— Verifikovani Gost, Slovačka</p></div>
     </div>
   </div>
 </section>
 
 <!-- MAP -->
-<section class="map-section" id="map">
+<section class="map-sec" id="map">
   <div class="map-inner">
-    <div class="map-text">
-      <p class="section-label">Lokacija</p>
-      <h2 class="section-title">Pronađite <em>Nas</em></h2>
-      <p class="map-desc">
-        Salaš se nalazi u srcu vojvođanske ravnice, lako dostupan automobilom iz Subotice, Novog Sada i Segedina. Besplatan privatni parking za 50+ vozila.
-      </p>
-      <div class="map-address-block">
-        <strong>Adresa</strong>
-        Salaši 330, Palić<br>
-        Subotica, Vojvodina, Srbija<br>
-        GPS: 46.1023° N, 19.7630° E
-      </div>
-      <a href="https://maps.google.com/?q=Salaši+330,+Palić,+Srbija" target="_blank" class="btn-directions">
-        🗺 Otvori u Google Maps
-      </a>
+    <div>
+      <p class="lbl-amber">Lokacija</p>
+      <h2 class="ttl-light" style="margin-bottom:18px;">Pronađite <em>Nas</em></h2>
+      <p class="map-desc">Salaš se nalazi u srcu vojvođanske ravnice, lako dostupan automobilom iz Subotice, Novog Sada i Segedina. Privatni parking za 50+ vozila.</p>
+      <div class="map-addr"><strong>Adresa</strong>Salaši 330, Palić<br>Subotica, Vojvodina, Srbija<br>GPS: 46.1023° N, 19.7630° E</div>
+      <a href="https://maps.google.com/?q=Salaši+330,+Palić,+Srbija" target="_blank" class="btn-dir">🗺 Otvori u Google Maps</a>
     </div>
     <div class="map-embed">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2786.0!2d19.7630!3d46.1023!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x474393f6b3f7a1c9%3A0x0!2zU2FsYcWhaWkgMzMwLCBQYWxpxIc!5e0!3m2!1ssr!2srs!4v1620000000000!5m2!1ssr!2srs"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        title="Etno Salaš Palić — Lokacija">
-      </iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2786.0!2d19.7630!3d46.1023!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x474393f6b3f7a1c9%3A0x0!2zU2FsYcWhaWkgMzMwLCBQYWxpxIc!5e0!3m2!1ssr!2srs!4v1620000000000!5m2!1ssr!2srs" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Etno Salaš Palić — Lokacija"></iframe>
     </div>
   </div>
 </section>
@@ -1559,98 +753,69 @@
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="contact-inner">
-    <div class="contact-text">
-      <p class="section-label">Pronađite Nas</p>
-      <h2 class="section-title">Dođite <em>Kod Nas</em></h2>
-      <p class="contact-body">
-        Radujemo se što ćemo vas ugostiti na našem salašu. Pozovite Akoša direktno, pišite na WhatsApp ili Viber. Plaćanje gotovinom po dolasku.
-      </p>
-      <ul class="contact-details">
-        <li class="contact-item">
-          <div class="contact-icon">📍</div>
+    <div>
+      <p class="lbl-amber">Kontakt</p>
+      <h2 class="ttl-light" style="margin-bottom:18px;">Dođite <em>Kod Nas</em></h2>
+      <p class="contact-body">Pozovite Akoša direktno, pišite na WhatsApp ili Viber. Plaćanje gotovinom po dolasku.</p>
+      <ul class="ci-list">
+        <li class="ci"><div class="ci-icon">📍</div><div><span class="ci-lbl">Adresa</span><span class="ci-val">Salaši 330, Palić, Vojvodina, Srbija</span></div></li>
+        <li class="ci">
+          <div class="ci-icon">📞</div>
           <div>
-            <span class="contact-label">Adresa</span>
-            <span class="contact-value">Salaši 330, Palić, Vojvodina, Srbija</span>
-          </div>
-        </li>
-        <li class="contact-item">
-          <div class="contact-icon">📞</div>
-          <div>
-            <span class="contact-label">Telefon · WhatsApp · Viber</span>
-            <span class="contact-value"><a href="tel:+38163505727">+381 63 505 727</a></span>
-            <div class="msg-icons">
+            <span class="ci-lbl">Telefon · WhatsApp · Viber</span>
+            <span class="ci-val"><a href="tel:+38163505727">+381 63 505 727</a></span>
+            <div class="msg-row">
               <a href="https://wa.me/38163505727" class="msg-badge" target="_blank">💬 WhatsApp</a>
               <a href="viber://chat?number=%2B38163505727" class="msg-badge">📲 Viber</a>
             </div>
           </div>
         </li>
-        <li class="contact-item">
-          <div class="contact-icon">✉️</div>
+        <li class="ci"><div class="ci-icon">✉️</div><div><span class="ci-lbl">Imejl</span><span class="ci-val"><a href="mailto:info@etnosalaspalic.rs">info@etnosalaspalic.rs</a></span></div></li>
+        <li class="ci">
+          <div class="ci-icon">🌐</div>
           <div>
-            <span class="contact-label">Imejl</span>
-            <span class="contact-value"><a href="mailto:info@etnosalaspalic.rs">info@etnosalaspalic.rs</a></span>
-          </div>
-        </li>
-        <li class="contact-item">
-          <div class="contact-icon">🌐</div>
-          <div>
-            <span class="contact-label">Društvene Mreže</span>
-            <div class="social-links">
-              <a href="https://www.facebook.com/Etno.Salas.Palic.Subotica/" target="_blank" class="social-link">📘 Facebook</a>
-              <a href="https://www.instagram.com/etno.salas.palic.subotica" target="_blank" class="social-link">📷 Instagram</a>
-              <a href="https://www.youtube.com/@Etno.Salas.Palic.Subotica" target="_blank" class="social-link">▶️ YouTube</a>
+            <span class="ci-lbl">Društvene Mreže</span>
+            <div class="soc-row">
+              <a href="https://www.facebook.com/Etno.Salas.Palic.Subotica/" target="_blank" class="soc-link">📘 Facebook</a>
+              <a href="https://www.instagram.com/etno.salas.palic.subotica" target="_blank" class="soc-link">📷 Instagram</a>
+              <a href="https://www.youtube.com/@Etno.Salas.Palic.Subotica" target="_blank" class="soc-link">▶️ YouTube</a>
             </div>
           </div>
         </li>
-        <li class="contact-item">
-          <div class="contact-icon">🌐</div>
-          <div>
-            <span class="contact-label">Jezici</span>
-            <span class="contact-value">Srpski · Mađarski · Engleski</span>
-          </div>
-        </li>
-        <li class="contact-item">
-          <div class="contact-icon">🕐</div>
-          <div>
-            <span class="contact-label">Prijava / Odjava</span>
-            <span class="contact-value">Prijava od 12:00 · Odjava do 10:00</span>
-          </div>
-        </li>
+        <li class="ci"><div class="ci-icon">🌐</div><div><span class="ci-lbl">Jezici</span><span class="ci-val">Srpski · Mađarski · Engleski</span></div></li>
+        <li class="ci"><div class="ci-icon">🕐</div><div><span class="ci-lbl">Prijava / Odjava</span><span class="ci-val">Prijava od 12:00 · Odjava do 10:00</span></div></li>
       </ul>
     </div>
-
-    <div class="booking-box">
+    <div class="bk-box">
       <h3>Spremi za <em>Rezervaciju?</em></h3>
-      <p>Javite se direktno — pozovite, pišite na WhatsApp ili Viber. Potvrdićemo vaše termine i pobrinuti se da sve bude spremno za vaš dolazak.</p>
-      <a href="tel:+38163505727" class="btn-book">📞 Pozovite za Rezervaciju</a>
-      <a href="https://wa.me/38163505727" class="btn-secondary" target="_blank">💬 WhatsApp — Pišite Nam</a>
-      <p class="booking-note">Samo gotovinska uplata · Kućni ljubimci nisu dozvoljeni · Deca svih uzrasta su dobrodošla</p>
+      <p>Javite se direktno — pozovite ili pišite na WhatsApp. Potvrdićemo termine i pobrinuti se da sve bude savršeno.</p>
+      <a href="tel:+38163505727" class="btn-bk-red">🎉 Rezervišite Žurku — Pozovite</a>
+      <a href="tel:+38163505727" class="btn-bk-amber">🏡 Rezervišite Odmor</a>
+      <a href="https://wa.me/38163505727" target="_blank" class="btn-bk-ghost">💬 WhatsApp — Pišite Nam</a>
+      <p class="bk-note">Samo gotovinska uplata · Kućni ljubimci nisu dozvoljeni · Deca svih uzrasta su dobrodošla</p>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p class="footer-logo">ETNO SALAŠ · PALIĆ</p>
-  <div class="footer-social">
+  <p class="f-logo">ETNO SALAŠ · PALIĆ</p>
+  <div class="f-soc">
     <a href="https://www.facebook.com/Etno.Salas.Palic.Subotica/" target="_blank">Facebook</a>
     <a href="https://www.instagram.com/etno.salas.palic.subotica" target="_blank">Instagram</a>
     <a href="https://www.youtube.com/@Etno.Salas.Palic.Subotica" target="_blank">YouTube</a>
   </div>
-  <p class="footer-copy">Salaši 330, Palić · +381 63 505 727 · info@etnosalaspalic.rs</p>
+  <p class="f-copy">Salaši 330, Palić · +381 63 505 727 · info@etnosalaspalic.rs</p>
 </footer>
 
 <script>
   const inputs = [];
   for (let i = 0; i < 15; i++) {
     const inp = document.createElement('input');
-    inp.type = 'file';
-    inp.accept = 'image/*';
-    inp.style.display = 'none';
+    inp.type = 'file'; inp.accept = 'image/*'; inp.style.display = 'none';
     inp.dataset.index = i;
     inp.addEventListener('change', function() {
-      const idx = parseInt(this.dataset.index);
-      if (this.files[0]) setPhoto(idx, this.files[0]);
+      if (this.files[0]) setPhoto(parseInt(this.dataset.index), this.files[0]);
     });
     document.body.appendChild(inp);
     inputs.push(inp);
@@ -1659,32 +824,26 @@
   function setPhoto(idx, file) {
     const url = URL.createObjectURL(file);
     const img = document.getElementById('img' + idx);
-    if (img) {
-      img.src = url;
-      img.parentElement.classList.add('has-image');
-    }
+    if (img) { img.src = url; img.parentElement.classList.add('has-image'); }
     if (idx < 5) {
-      const heroSlots = document.querySelectorAll('.hero-photo-slot');
-      const heroSlot = heroSlots[idx];
-      if (heroSlot) {
-        const heroImg = heroSlot.querySelector('img') || document.createElement('img');
-        heroImg.src = url;
-        heroImg.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
-        if (!heroSlot.contains(heroImg)) heroSlot.appendChild(heroImg);
+      const slots = document.querySelectorAll('.php');
+      if (slots[idx]) {
+        const hi = slots[idx].querySelector('img') || document.createElement('img');
+        hi.src = url;
+        hi.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;opacity:0.5;';
+        if (!slots[idx].contains(hi)) slots[idx].appendChild(hi);
       }
     }
   }
 
-  function loadAllPhotos(event) {
-    const files = Array.from(event.target.files).slice(0, 15);
-    files.forEach((file, i) => setPhoto(i, file));
+  function loadAllPhotos(e) {
+    Array.from(e.target.files).slice(0, 15).forEach((f, i) => setPhoto(i, f));
   }
 
-  // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
 </script>

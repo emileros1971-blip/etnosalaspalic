@@ -375,17 +375,6 @@ nav {
 /* ══ GALLERY ══ */
 .gallery { background: var(--parchment); padding: 90px 60px; text-align: center; }
 
-/*
-  14 photos layout:
-  Landscape: 01-10, 13, 14  (ratio ~16:9 or 4:3)
-  Portrait:  11, 12          (ratio 9:16)
-
-  Grid strategy (5 columns):
-  Row 1: [01 wide 2col] [02] [03] [portrait-11 tall 2row]
-  Row 2: [04] [05] [06]       |portrait-11|
-  Row 3: [07 wide 2col] [08] [09] [portrait-12 tall 2row]
-  Row 4: [10] [13] [14]       |portrait-12|
-*/
 .photo-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -399,6 +388,7 @@ nav {
   overflow: hidden;
   background: rgba(26,18,8,0.1);
   position: relative;
+  cursor: pointer;
 }
 
 .photo-cell img {
@@ -411,32 +401,64 @@ nav {
 
 .photo-cell:hover img { transform: scale(1.04); }
 
-/* Landscape cells — fixed height */
 .photo-cell.land { height: 220px; }
 
-/* Row 1 */
-.pc-01 { grid-column: 1 / 3; grid-row: 1; height: 220px; } /* wide landscape */
+.pc-01 { grid-column: 1 / 3; grid-row: 1; height: 220px; }
 .pc-02 { grid-column: 3;     grid-row: 1; height: 220px; }
 .pc-03 { grid-column: 4;     grid-row: 1; height: 220px; }
-/* portrait 11 spans rows 1+2, col 5 */
-.pc-11 { grid-column: 5;     grid-row: 1 / 3; height: 445px; } /* 220+5+220 */
+.pc-11 { grid-column: 5;     grid-row: 1 / 3; height: 445px; }
 
-/* Row 2 */
 .pc-04 { grid-column: 1;     grid-row: 2; height: 220px; }
 .pc-05 { grid-column: 2;     grid-row: 2; height: 220px; }
-.pc-06 { grid-column: 3 / 5; grid-row: 2; height: 220px; } /* wide */
+.pc-06 { grid-column: 3 / 5; grid-row: 2; height: 220px; }
 
-/* Row 3 */
-.pc-07 { grid-column: 1 / 3; grid-row: 3; height: 220px; } /* wide */
+.pc-07 { grid-column: 1 / 3; grid-row: 3; height: 220px; }
 .pc-08 { grid-column: 3;     grid-row: 3; height: 220px; }
 .pc-09 { grid-column: 4;     grid-row: 3; height: 220px; }
-/* portrait 12 spans rows 3+4, col 5 */
 .pc-12 { grid-column: 5;     grid-row: 3 / 5; height: 445px; }
 
-/* Row 4 */
 .pc-10 { grid-column: 1;     grid-row: 4; height: 220px; }
-.pc-13 { grid-column: 2 / 4; grid-row: 4; height: 220px; } /* wide */
+.pc-13 { grid-column: 2 / 4; grid-row: 4; height: 220px; }
 .pc-14 { grid-column: 4;     grid-row: 4; height: 220px; }
+
+/* ══ LIGHTBOX ══ */
+.lightbox {
+  display: none;
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(13,8,2,0.96);
+  align-items: center; justify-content: center;
+  cursor: zoom-out;
+}
+.lightbox.open { display: flex; }
+.lightbox img {
+  max-width: 92vw; max-height: 92vh;
+  object-fit: contain;
+  box-shadow: 0 0 80px rgba(0,0,0,0.8);
+  cursor: default;
+  animation: lbIn 0.25s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes lbIn {
+  from { opacity: 0; transform: scale(0.88); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.lb-close {
+  position: absolute; top: 22px; right: 28px;
+  font-size: 2rem; color: rgba(232,201,122,0.7);
+  cursor: pointer; line-height: 1; background: none; border: none;
+  transition: color 0.2s;
+}
+.lb-close:hover { color: var(--wheat); }
+.lb-prev, .lb-next {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  font-size: 2rem; color: rgba(232,201,122,0.55);
+  cursor: pointer; background: none; border: none;
+  padding: 10px 18px;
+  transition: color 0.2s;
+  user-select: none;
+}
+.lb-prev { left: 16px; }
+.lb-next { right: 16px; }
+.lb-prev:hover, .lb-next:hover { color: var(--wheat); }
 
 /* ══ ACTIVITIES ══ */
 .activities { background: var(--forest); padding: 90px 60px; position: relative; overflow: hidden; }
@@ -536,7 +558,6 @@ footer { background: #0d0a05; padding: 34px 52px; display: flex; justify-content
   .rooms-header { flex-direction: column; align-items: flex-start; }
   .rooms-grid, .rev-grid { grid-template-columns: 1fr; }
   .pf-grid, .act-grid, .feats-grid { grid-template-columns: 1fr 1fr; }
-  /* Mobile gallery — 2 col, portraits take 2 rows */
   .photo-grid { grid-template-columns: 1fr 1fr; gap: 4px; }
   .pc-01, .pc-07, .pc-13 { grid-column: 1 / 3; height: 200px; }
   .pc-11 { grid-column: 2; grid-row: auto; height: 380px; }
@@ -559,7 +580,7 @@ footer { background: #0d0a05; padding: 34px 52px; display: flex; justify-content
   }
   .pc-11, .pc-12 {
     grid-column: auto; grid-row: auto;
-    height: 350px; /* portrait shows well in full-width */
+    height: 350px;
   }
 }
 </style>
@@ -600,8 +621,8 @@ footer { background: #0d0a05; padding: 34px 52px; display: flex; justify-content
       Roštilj, bazen, pečenje prasetine, brutalni zvuk — i <strong>nula komšija, nula ograničenja buke, nula skrivenih troškova.</strong> Donesite svoju piću i napravite žurku godine!
     </p>
     <div class="ph-ctas">
-      <a href="tel:+38163846402" class="btn-fire">📞 Rezervišite Termin</a>
-      <a href="https://wa.me/38163846402" target="_blank" class="btn-ghost">💬 WhatsApp / Viber</a>
+      <a href="tel:+381638464026" class="btn-fire">📞 Rezervišite Termin</a>
+      <a href="https://wa.me/381638464026" target="_blank" class="btn-ghost">💬 WhatsApp / Viber</a>
     </div>
   </div>
   <span class="ph-scroll">Skroluj</span>
@@ -643,8 +664,8 @@ footer { background: #0d0a05; padding: 34px 52px; display: flex; justify-content
       <h2 class="pr-headline">Jedan fiksni iznos —<br><em>sve uključeno.</em></h2>
       <p class="pr-body">Kod nas nema komplikovanih cena menija i pivskih karata. Za jedan fiksni iznos zakupite celu infrastrukturu, a na hrani i piću uštedite koliko god želite — kupujete sami po prodajnoj ceni.</p>
       <div class="pr-ctas">
-        <a href="tel:+38163846402" class="btn-fire">📞 Pozovite za Cenu i Termin</a>
-        <a href="https://wa.me/38163846402" target="_blank" class="btn-ghost">💬 Pišite na WhatsApp</a>
+        <a href="tel:+381638464026" class="btn-fire">📞 Pozovite za Cenu i Termin</a>
+        <a href="https://wa.me/381638464026" target="_blank" class="btn-ghost">💬 Pišite na WhatsApp</a>
       </div>
     </div>
     <div class="pi-list">
@@ -710,31 +731,30 @@ footer { background: #0d0a05; padding: 34px 52px; display: flex; justify-content
   <h2 class="ttl-dark" style="margin-bottom:44px;">Prizori <em>Salaškog Života</em></h2>
 
   <div class="photo-grid">
-    <!-- Row 1: wide landscape, 2 landscape, portrait (spans 2 rows) -->
     <div class="photo-cell pc-01"><img src="20240605_214355.jpg" alt="Etno Salaš Palić"></div>
     <div class="photo-cell pc-02"><img src="20240605_214459.jpg" alt="Etno Salaš Palić"></div>
     <div class="photo-cell pc-03"><img src="20250201_153619.jpg" alt="Etno Salaš Palić"></div>
-    <!-- portrait 11 — spans rows 1+2 -->
     <div class="photo-cell pc-11"><img src="ETNO_OSZ_02_Vibe_v02.mp4_snapshot_00.16.527.jpg" alt="Etno Salaš Palić" style="object-position: center top;"></div>
-
-    <!-- Row 2: 3 landscape (portrait 11 continues in col 5) -->
     <div class="photo-cell pc-04"><img src="20251025_121139.jpg" alt="Etno Salaš Palić"></div>
     <div class="photo-cell pc-05"><img src="20260207_145238.jpg" alt="Etno Salaš Palić"></div>
     <div class="photo-cell pc-06"><img src="20260314_170551.jpg" alt="Etno Salaš Palić"></div>
-
-    <!-- Row 3: wide landscape, 2 landscape, portrait (spans 2 rows) -->
     <div class="photo-cell pc-07"><img src="20260314_170614.jpg" alt="Etno Salaš Palić"></div>
     <div class="photo-cell pc-08"><img src="20260314_170652.jpg" alt="Etno Salaš Palić"></div>
     <div class="photo-cell pc-09"><img src="DSC_5669.jpg" alt="Etno Salaš Palić"></div>
-    <!-- portrait 12 — spans rows 3+4 -->
     <div class="photo-cell pc-12"><img src="ETNO_OSZ_02_Vibe_v02.mp4_snapshot_00.36.792.jpg" alt="Etno Salaš Palić" style="object-position: center top;"></div>
-
-    <!-- Row 4: landscape, wide landscape, landscape (portrait 12 continues in col 5) -->
     <div class="photo-cell pc-10"><img src="DSC_5700.jpg" alt="Etno Salaš Palić"></div>
     <div class="photo-cell pc-13"><img src="Messenger_creation_62FC4C32-42D7-404A-9FFC-816D45372BCA.jpeg" alt="Etno Salaš Palić"></div>
     <div class="photo-cell pc-14"><img src="Messenger_creation_B72FD91C-2B48-4BF1-A184-799439C963AE.jpeg" alt="Etno Salaš Palić"></div>
   </div>
 </section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lb-close" aria-label="Zatvori">✕</button>
+  <button class="lb-prev" id="lb-prev" aria-label="Prethodna">&#8592;</button>
+  <img id="lb-img" src="" alt="">
+  <button class="lb-next" id="lb-next" aria-label="Sledeća">&#8594;</button>
+</div>
 
 <!-- ACTIVITIES -->
 <section class="activities" id="activities">
@@ -819,14 +839,14 @@ footer { background: #0d0a05; padding: 34px 52px; display: flex; justify-content
           <div class="ci-icon">📞</div>
           <div>
             <span class="ci-lbl">Telefon · WhatsApp · Viber</span>
-            <span class="ci-val"><a href="tel:+38163846402">+381 63 846 402 6</a></span>
+            <span class="ci-val"><a href="tel:+381638464026">+381 63 846 402 6</a></span>
             <div class="msg-row">
-              <a href="https://wa.me/38163846402" class="msg-badge" target="_blank">💬 WhatsApp</a>
-              <a href="viber://chat?number=%2B38163846402" class="msg-badge">📲 Viber</a>
+              <a href="https://wa.me/381638464026" class="msg-badge" target="_blank">💬 WhatsApp</a>
+              <a href="viber://chat?number=%2B381638464026" class="msg-badge">📲 Viber</a>
             </div>
           </div>
         </li>
-        <li class="ci"><div class="ci-icon">✉️</div><div><span class="ci-lbl">Imejl</span><span class="ci-val"><a href="mailto:info@etnosalaspalic.rs">info@etnosalaspalic.rs</a></span></div></li>
+        <li class="ci"><div class="ci-icon">✉️</div><div><span class="ci-lbl">Imejl</span><span class="ci-val"><a href="mailto:etnosalas@yahoo.com">etnosalas@yahoo.com</a></span></div></li>
         <li class="ci">
           <div class="ci-icon">🌐</div>
           <div>
@@ -835,6 +855,7 @@ footer { background: #0d0a05; padding: 34px 52px; display: flex; justify-content
               <a href="https://www.facebook.com/Etno.Salas.Palic.Subotica/" target="_blank" class="soc-link">📘 Facebook</a>
               <a href="https://www.instagram.com/etno.salas.palic.subotica" target="_blank" class="soc-link">📷 Instagram</a>
               <a href="https://www.youtube.com/@Etno.Salas.Palic.Subotica" target="_blank" class="soc-link">▶️ YouTube</a>
+              <a href="https://www.tiktok.com/@etno.salas.palic.subotic" target="_blank" class="soc-link">🎵 TikTok</a>
             </div>
           </div>
         </li>
@@ -845,9 +866,9 @@ footer { background: #0d0a05; padding: 34px 52px; display: flex; justify-content
     <div class="bk-box">
       <h3>Spremi za <em>Rezervaciju?</em></h3>
       <p>Javite se direktno — pozovite ili pišite na WhatsApp. Potvrdićemo termine i pobrinuti se da sve bude savršeno.</p>
-      <a href="tel:+38163846402" class="btn-bk-red">🎉 Rezervišite Žurku — Pozovite</a>
-      <a href="tel:+38163846402" class="btn-bk-amber">🏡 Rezervišite Odmor</a>
-      <a href="https://wa.me/38163846402" target="_blank" class="btn-bk-ghost">💬 WhatsApp — Pišite Nam</a>
+      <a href="tel:+381638464026" class="btn-bk-red">🎉 Rezervišite Žurku — Pozovite</a>
+      <a href="tel:+381638464026" class="btn-bk-amber">🏡 Rezervišite Odmor</a>
+      <a href="https://wa.me/381638464026" target="_blank" class="btn-bk-ghost">💬 WhatsApp — Pišite Nam</a>
       <p class="bk-note">Samo gotovinska uplata · Kućni ljubimci nisu dozvoljeni · Deca svih uzrasta su dobrodošla</p>
     </div>
   </div>
@@ -860,17 +881,59 @@ footer { background: #0d0a05; padding: 34px 52px; display: flex; justify-content
     <a href="https://www.facebook.com/Etno.Salas.Palic.Subotica/" target="_blank">Facebook</a>
     <a href="https://www.instagram.com/etno.salas.palic.subotica" target="_blank">Instagram</a>
     <a href="https://www.youtube.com/@Etno.Salas.Palic.Subotica" target="_blank">YouTube</a>
+    <a href="https://www.tiktok.com/@etno.salas.palic.subotic" target="_blank">TikTok</a>
   </div>
-  <p class="f-copy">Horgoški put 199, Hajdukovo · +381 63 846 402 6 · info@etnosalaspalic.rs</p>
+  <p class="f-copy">Horgoški put 199, Hajdukovo · +381 63 846 402 6 · etnosalas@yahoo.com</p>
 </footer>
 
 <script>
+// Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const t = document.querySelector(a.getAttribute('href'));
     if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
   });
 });
+
+// Lightbox
+(function() {
+  const cells = Array.from(document.querySelectorAll('.photo-cell'));
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lb-img');
+  let current = 0;
+
+  function open(idx) {
+    current = idx;
+    const img = cells[idx].querySelector('img');
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function prev() { open((current - 1 + cells.length) % cells.length); }
+  function next() { open((current + 1) % cells.length); }
+
+  cells.forEach((cell, i) => cell.addEventListener('click', () => open(i)));
+
+  document.getElementById('lb-close').addEventListener('click', close);
+  document.getElementById('lb-prev').addEventListener('click', e => { e.stopPropagation(); prev(); });
+  document.getElementById('lb-next').addEventListener('click', e => { e.stopPropagation(); next(); });
+
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') prev();
+    if (e.key === 'ArrowRight') next();
+  });
+})();
 </script>
 
 </body>

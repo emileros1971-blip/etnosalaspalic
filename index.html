@@ -20,7 +20,9 @@ src="https://www.facebook.com/tr?id=1487603276144628&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Etno Salaš Palić — Privatne Proslave i Odmor</title>
+<title>Etno Salaš Palić — Maturska Žurka, Privatne Proslave i Odmor</title>
+<meta name="description" content="Etno Salaš Palić nudi privatni zakup za maturske žurke, rođendane i proslave do 50 osoba. Potpuna privatnost, ozvučenje, rasveta, prostor i rezervacije na +381 63 8464026.">
+
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2L0JPK8MSE"></script>
@@ -599,6 +601,275 @@ footer { background: #0d0a05; padding: 34px 52px; display: flex; justify-content
     height: 350px;
   }
 }
+
+/* ══════════════════════════════════════════════════
+   PROMO PARTY SECTION — Maturska Žurka campaign
+   ══════════════════════════════════════════════════ */
+.promo-party-section {
+  position: relative;
+  background: #0a0612;
+  color: #fff;
+  padding: 110px 60px 90px;
+  overflow: hidden;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  isolation: isolate;
+}
+.promo-party-bg {
+  position: absolute; inset: 0; z-index: -1;
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 20%, rgba(232,90,160,0.35), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 15%, rgba(255,200,60,0.18), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 80% 90%, rgba(232,40,120,0.28), transparent 65%),
+    radial-gradient(ellipse 60% 40% at 10% 95%, rgba(120,40,200,0.22), transparent 65%),
+    linear-gradient(180deg, #0a0612 0%, #14081c 60%, #0a0612 100%);
+}
+.promo-party-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 12% 28%, rgba(255,255,255,0.06) 0 1px, transparent 2px),
+    radial-gradient(circle at 78% 62%, rgba(255,200,60,0.08) 0 1px, transparent 2px),
+    radial-gradient(circle at 45% 80%, rgba(255,90,170,0.07) 0 1px, transparent 2px),
+    radial-gradient(circle at 88% 22%, rgba(255,255,255,0.05) 0 1px, transparent 2px);
+  background-size: 220px 220px, 280px 280px, 340px 340px, 260px 260px;
+  opacity: 0.9;
+}
+.promo-party-content {
+  max-width: 1280px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.15fr 1fr;
+  gap: 56px; align-items: center;
+}
+.pp-eyebrow {
+  display: inline-block;
+  font-size: 12px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #ffd66b;
+  padding: 8px 16px;
+  border: 1px solid rgba(255,214,107,0.4);
+  border-radius: 999px;
+  margin-bottom: 22px;
+  background: rgba(255,214,107,0.06);
+}
+.pp-headline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(40px, 5.6vw, 76px);
+  font-weight: 700; line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-bottom: 14px;
+}
+.pp-headline .pp-accent {
+  background: linear-gradient(135deg, #ff4d9e 0%, #ffd66b 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-style: italic;
+}
+.pp-sub {
+  font-size: clamp(16px, 1.6vw, 20px);
+  color: #ffb3d4; font-weight: 600;
+  letter-spacing: 0.5px; text-transform: uppercase;
+  margin-bottom: 22px;
+}
+.pp-lead {
+  font-size: 17px; line-height: 1.65;
+  color: rgba(255,255,255,0.78);
+  max-width: 600px; margin-bottom: 32px;
+}
+.pp-bullets {
+  list-style: none; padding: 0; margin: 0 0 36px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px 28px;
+}
+.pp-bullets li {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: 15px; line-height: 1.4;
+  color: rgba(255,255,255,0.92);
+}
+.pp-bullets li::before {
+  content: ''; flex: 0 0 8px;
+  width: 8px; height: 8px; margin-top: 8px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff4d9e, #ffd66b);
+  box-shadow: 0 0 12px rgba(255,77,158,0.6);
+}
+.pp-bullets li b { color: #fff; font-weight: 700; }
+.pp-bullets li span { display: block; color: rgba(255,255,255,0.6); font-size: 13px; margin-top: 2px; }
+
+.promo-party-cta { display: flex; flex-wrap: wrap; gap: 12px; }
+.promo-party-cta a {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 26px; border-radius: 12px;
+  font-weight: 700; font-size: 15px; letter-spacing: 0.3px;
+  text-decoration: none; transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+}
+.pp-btn-primary {
+  background: linear-gradient(135deg, #ff2d8a 0%, #ff5fa6 100%);
+  color: #fff;
+  box-shadow: 0 12px 30px -8px rgba(255,45,138,0.55), 0 0 0 1px rgba(255,255,255,0.08) inset;
+}
+.pp-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -8px rgba(255,45,138,0.7); }
+.pp-btn-wa {
+  background: #1f2a1f; color: #b6f0a8;
+  border: 1px solid rgba(182,240,168,0.35);
+}
+.pp-btn-wa:hover { background: #25a766; color: #fff; border-color: #25a766; }
+.pp-btn-ghost {
+  background: transparent; color: #ffd66b;
+  border: 1px solid rgba(255,214,107,0.5);
+}
+.pp-btn-ghost:hover { background: rgba(255,214,107,0.1); }
+
+/* RIGHT COLUMN — cards */
+.pp-right { display: flex; flex-direction: column; gap: 18px; position: relative; }
+.pp-capacity-badge {
+  position: absolute; top: -22px; right: -10px;
+  background: linear-gradient(135deg, #ffd66b, #c4873a);
+  color: #1a1208; padding: 10px 18px; border-radius: 999px;
+  font-weight: 800; font-size: 13px; letter-spacing: 1.5px;
+  box-shadow: 0 10px 30px -6px rgba(255,214,107,0.6);
+  z-index: 2;
+}
+.promo-party-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 30px 32px;
+  backdrop-filter: blur(8px);
+}
+.promo-party-price {
+  border-color: rgba(255,77,158,0.35);
+  background:
+    radial-gradient(ellipse at top right, rgba(255,77,158,0.15), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  position: relative; overflow: hidden;
+}
+.pp-card-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+  color: #ff89c0; text-transform: uppercase; margin-bottom: 10px;
+}
+.pp-price-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+.pp-price-num {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 56px; font-weight: 700; line-height: 1;
+  color: #fff; letter-spacing: -0.02em;
+}
+.pp-price-cur { font-size: 18px; font-weight: 600; color: #ffd66b; letter-spacing: 1.5px; }
+.pp-price-desc { color: rgba(255,255,255,0.7); font-size: 15px; margin-bottom: 4px; }
+.pp-price-meta { color: rgba(255,255,255,0.5); font-size: 13px; }
+
+.promo-party-dj {
+  border-color: rgba(255,214,107,0.3);
+  background:
+    radial-gradient(ellipse at top left, rgba(255,214,107,0.12), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+}
+.pp-dj-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 6px;
+}
+.pp-dj-price {
+  font-size: 15px; color: rgba(255,255,255,0.85); margin: 8px 0 6px;
+}
+.pp-dj-price b { color: #ffd66b; font-size: 18px; }
+.pp-dj-text { color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.5; }
+
+.pp-flyer-card {
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
+}
+.pp-flyer-card img { display: block; width: 100%; height: auto; }
+
+/* Phone CTA strip */
+.pp-phone-strip {
+  max-width: 1280px; margin: 50px auto 0;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; flex-wrap: wrap;
+  background: linear-gradient(90deg, rgba(255,77,158,0.12), rgba(255,214,107,0.08));
+  border: 1px solid rgba(255,214,107,0.25);
+  border-radius: 16px;
+  padding: 22px 30px;
+}
+.pp-phone-strip-l { display: flex; align-items: center; gap: 16px; }
+.pp-phone-strip-l .ico {
+  width: 46px; height: 46px; border-radius: 12px;
+  background: linear-gradient(135deg, #ff2d8a, #ffd66b);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+.pp-phone-strip-l strong { display: block; color: #fff; font-size: 16px; }
+.pp-phone-strip-l span { color: rgba(255,255,255,0.65); font-size: 13px; }
+.pp-phone-num {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(22px, 3vw, 32px); font-weight: 700;
+  color: #ffd66b; text-decoration: none; letter-spacing: 1px;
+}
+.pp-phone-num:hover { color: #fff; }
+
+/* Mini icons row */
+.pp-mini-row {
+  max-width: 1280px; margin: 36px auto 0;
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+}
+.pp-mini {
+  text-align: center; padding: 18px 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.02);
+}
+.pp-mini .mi { font-size: 22px; margin-bottom: 6px; display: block; }
+.pp-mini b { color: #fff; font-size: 13px; display: block; margin-bottom: 2px; }
+.pp-mini span { color: rgba(255,255,255,0.55); font-size: 12px; line-height: 1.3; }
+
+/* Transition strip */
+.pp-transition {
+  position: relative;
+  background: linear-gradient(180deg, #0a0612 0%, #1a1208 100%);
+  padding: 50px 60px;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.pp-transition p {
+  color: #e8c97a; font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 20px; margin-bottom: 18px;
+}
+.pp-transition a {
+  display: inline-block; padding: 14px 32px;
+  border: 1px solid #c4873a; color: #e8c97a;
+  border-radius: 999px; text-decoration: none;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px; letter-spacing: 2px; text-transform: uppercase;
+  transition: all .2s ease;
+}
+.pp-transition a:hover { background: #c4873a; color: #1a1208; }
+
+/* Nav highlight */
+.nav-links a.nav-promo {
+  background: linear-gradient(135deg, #ff2d8a, #ffd66b);
+  color: #1a1208 !important;
+  padding: 6px 14px; border-radius: 999px;
+  font-weight: 700;
+}
+
+/* Tablet */
+@media (max-width: 980px) {
+  .promo-party-section { padding: 90px 32px 70px; }
+  .promo-party-content { grid-template-columns: 1fr; gap: 36px; }
+  .pp-capacity-badge { position: static; align-self: flex-start; margin-bottom: 4px; }
+  .pp-mini-row { grid-template-columns: repeat(2, 1fr); }
+  .pp-transition { padding: 40px 28px; }
+}
+@media (max-width: 560px) {
+  .promo-party-section { padding: 80px 20px 60px; }
+  .pp-bullets { grid-template-columns: 1fr; }
+  .promo-party-cta a { width: 100%; justify-content: center; }
+  .pp-phone-strip { flex-direction: column; align-items: stretch; text-align: center; padding: 22px; }
+  .pp-phone-strip-l { justify-content: center; }
+  .pp-phone-num { font-size: 26px; text-align: center; display: block; }
+  .pp-mini-row { grid-template-columns: 1fr 1fr; }
+  .promo-party-card { padding: 24px 22px; }
+  .pp-price-num { font-size: 46px; }
+}
 </style>
 </head>
 <body>
@@ -607,6 +878,7 @@ footer { background: #0d0a05; padding: 34px 52px; display: flex; justify-content
 <nav>
   <a href="#" class="nav-logo">Etno Salaš · Palić</a>
   <ul class="nav-links">
+    <li><a href="#maturska-zurka" class="nav-promo">Maturska Žurka</a></li>
     <li><a href="#party-feats">Zakup Salaša</a></li>
     <li><a href="#retreat">Odmor</a></li>
     <li><a href="#gallery">Galerija</a></li>
@@ -614,6 +886,91 @@ footer { background: #0d0a05; padding: 34px 52px; display: flex; justify-content
     <li><a href="#contact" class="hl">Kontakt</a></li>
   </ul>
 </nav>
+
+<!-- ══ PROMO: MATURSKA ŽURKA ══ -->
+<section class="promo-party-section" id="maturska-zurka">
+  <div class="promo-party-bg" aria-hidden="true"></div>
+
+  <div class="promo-party-content">
+    <div class="pp-left">
+      <span class="pp-eyebrow">Etno Salaš Palić · Maturska Proslava</span>
+      <h1 class="pp-headline">
+        Maturska žurka <span class="pp-accent">za pamćenje!</span>
+      </h1>
+      <p class="pp-sub">Tvoja noć. Tvoja ekipa. Tvoja žurka.</p>
+      <p class="pp-lead">
+        Zakupite ceo Etno Salaš Palić za privatnu matursku proslavu do 50 osoba.
+        Potpuna privatnost, vrhunska atmosfera, jako ozvučenje, svetlo, prostor
+        i sloboda da slavite bez komšija i bez ograničenja.
+      </p>
+
+      <ul class="pp-bullets">
+        <li><div><b>Potpuna privatnost</b><span>Nema komšija, nema ograničenja</span></div></li>
+        <li><div><b>Vrhunska atmosfera</b><span>Najbolja muzika, najbolja ekipa</span></div></li>
+        <li><div><b>Slavite slobodno</b><span>Do 3 ujutru</span></div></li>
+        <li><div><b>Sve vrste žurki</b><span>Maturske, rođendani, punoletstva</span></div></li>
+        <li><div><b>Profi oprema</b><span>Mikrofon, rasveta, ozvučenje</span></div></li>
+        <li><div><b>Ceo objekat za vas</b><span>Do 50 osoba u privatnom prostoru</span></div></li>
+      </ul>
+
+      <div class="promo-party-cta">
+        <a href="tel:+381638464026" class="pp-btn-primary">📞 Pozovite odmah</a>
+        <a href="https://wa.me/381638464026" target="_blank" rel="noopener" class="pp-btn-wa">💬 WhatsApp / Viber</a>
+        <a href="#gallery" class="pp-btn-ghost">📸 Pogledajte prostor</a>
+      </div>
+    </div>
+
+    <div class="pp-right">
+      <span class="pp-capacity-badge">👥 Do 50 osoba</span>
+
+      <div class="promo-party-card promo-party-price">
+        <div class="pp-card-label">Paket 1 · Ceo Objekat</div>
+        <div class="pp-price-row">
+          <span class="pp-price-num">24.000</span>
+          <span class="pp-price-cur">RSD</span>
+        </div>
+        <p class="pp-price-desc">Za ceo Etno Salaš Palić</p>
+        <p class="pp-price-meta">Privatni zakup · Do 50 osoba · Slavlje do 3h ujutru</p>
+      </div>
+
+      <div class="promo-party-card promo-party-dj">
+        <div class="pp-card-label">🎧 Opcionalno · DJ Servis</div>
+        <h3 class="pp-dj-title">Želite vrhunsku atmosferu?</h3>
+        <p class="pp-dj-price">Za samo dodatnih <b>6.000 RSD</b></p>
+        <p class="pp-dj-text">Ja ću biti vaš DJ i pobrinuti se za najbolju žurku — najbolja muzika, savršen tajming, energija od početka do kraja.</p>
+      </div>
+
+      <div class="pp-flyer-card" aria-hidden="true">
+        <img src="assets/images/maturska-zurka-flyer.png" alt="Maturska žurka — Etno Salaš Palić flajer" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <div class="pp-phone-strip">
+    <div class="pp-phone-strip-l">
+      <div class="ico">📞</div>
+      <div>
+        <strong>Rezervišite na vreme!</strong>
+        <span>Termini se brzo pune — pozovite još danas</span>
+      </div>
+    </div>
+    <a href="tel:+381638464026" class="pp-phone-num">+381 63 8464026</a>
+  </div>
+
+  <div class="pp-mini-row">
+    <div class="pp-mini"><span class="mi">🏡</span><b>Etno Salaš Palić</b><span>Palić, Srbija</span></div>
+    <div class="pp-mini"><span class="mi">🔒</span><b>Potpuna privatnost</b><span>Ceo objekat samo za vas</span></div>
+    <div class="pp-mini"><span class="mi">👥</span><b>Do 50 osoba</b><span>Idealno za maturske</span></div>
+    <div class="pp-mini"><span class="mi">🕒</span><b>Slavite do 3h</b><span>Bez ograničenja buke</span></div>
+    <div class="pp-mini"><span class="mi">🔊</span><b>Jako ozvučenje</b><span>Svetlo za vrhunsku atmosferu</span></div>
+  </div>
+</section>
+
+<!-- Soft transition into the rest of the site -->
+<div class="pp-transition">
+  <p>Ili istražite kompletan Etno Salaš Palić</p>
+  <a href="#party-feats">Pogledajte sve sadržaje</a>
+</div>
 
 <!-- ══ PARTY HERO ══ -->
 <section class="party-hero">
